@@ -3,7 +3,10 @@
     import EnterName from './EnterName';
     import EnterFeedback from './EnterFeedback';
     import EnterRating from './SelectRating';
+    import {useToastStore} from '~/Store';
     import {motion} from 'motion-v';
+
+    const {showToast} = useToastStore();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,15 +27,18 @@
             if(response.status === 200){
                 const result = await response.text();
                 console.log(result);
+                showToast(result);
             }
             else{
                 const result = await response.text();
                 console.log(result);
+                showToast(result);
             }
         }
         catch(error){
             const message = error.message;
             console.log(message);
+            showToast(message);
         }
     }
 </script>

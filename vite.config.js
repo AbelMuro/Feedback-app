@@ -11,7 +11,7 @@ export default defineConfig({
     ],
     resolve: {
     alias: {                                                     //this is similar to the babel-root-plugin-import that defines long directories with a flag
-        '@': fileURLToPath(new URL('./src', import.meta.url))      //we are creating an alias for import statements, instead of using ./src, you can use @/
+        '~': fileURLToPath(new URL('./src', import.meta.url))      //we are creating an alias for import statements, instead of using ./src, you can use @/
     },
     },
 })

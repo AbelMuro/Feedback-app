@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "motion-v": "^1.7.4",
+    "pinia": "^3.0.4",
     "vue": "^3.5.26"
   },
   "devDependencies": {

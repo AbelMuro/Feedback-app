@@ -1,15 +1,19 @@
 <script setup>
     import SubmitFeedback from './Pages/SubmitFeedback';
+    import Toast from './Common/Components/Toast';
+    import Login from './Pages/Authorization/Login';
 
     /* 
-        this is where i left off, i am currently on the back end
+        this is where i left off, i want to implement authorization to ensure 
+        that the system of creating feedback and receiving responses will make more sense
     */
 
 
 </script>
 
 <template>
-    <SubmitFeedback/>
+    <Login/>
+    <Toast/>
 </template>
 
 <style>
@@ -29,6 +33,7 @@
 
     :root{
         --background-gradient: linear-gradient(213deg,rgba(8, 8, 8, 1) 0%, rgba(1, 32, 99, 1) 49%, rgba(0, 6, 69, 1) 99%);
+        --white-0: white;
         --white-100: rgb(198, 198, 198);
         --white-200: rgb(216, 216, 216);
         --blue-0: rgb(0, 0, 255);        
