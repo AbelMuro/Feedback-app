@@ -3,18 +3,53 @@
     import EnterName from './EnterName';
     import EnterFeedback from './EnterFeedback';
     import EnterRating from './SelectRating';
+    import {motion} from 'motion-v';
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try{
+            const name = e.target.elements.name.value;
+            const email = e.target.elements.email.value;
+            const feedback = e.target.elements.feedback.value;
+
+            const response = await fetch('http://localhost:4000/create_feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({name, email, feedback})
+            });
+
+            if(response.status === 200){
+                const result = await response.text();
+                console.log(result);
+            }
+            else{
+                const result = await response.text();
+                console.log(result);
+            }
+        }
+        catch(error){
+            const message = error.message;
+            console.log(message);
+        }
+    }
 </script>
 
 <template>
-    <form class="form">
-        <EnterEmail/>
-        <EnterName/>
-        <EnterFeedback/>
-        <EnterRating/>
-        <button class="submit">
-            Submit
-        </button>
-    </form>
+    <motion.form 
+        layout 
+        class="form" 
+        @submit="handleSubmit">
+            <EnterEmail/>
+            <EnterName/>
+            <EnterFeedback/>
+            <EnterRating/>
+            <motion.button layout class="submit">
+                Submit
+            </motion.button>
+    </motion.form>
 </template>
 
 <style scoped>

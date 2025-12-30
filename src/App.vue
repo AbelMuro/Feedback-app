@@ -19,7 +19,7 @@
 
     *{
         box-sizing: border-box;
-        transition: all 0.2s linear;
+        transition: all 0.2s linear, opacity 0s, transform 0s;
     }
 
     @font-face {
@@ -34,7 +34,7 @@
         --blue-0: rgb(0, 0, 255);        
         --blue-100:#0000e2;
         --blue-200: rgb(0, 0, 192);
-
+        --red-100: rgb(204, 0, 0);
     }
 
 </style>

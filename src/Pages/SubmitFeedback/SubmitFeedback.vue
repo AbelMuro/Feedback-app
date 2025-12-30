@@ -1,26 +1,29 @@
 <script setup>
+    import {motion, LayoutGroup} from 'motion-v';
     import Form from './Form';
 </script>
 
 <template>
-    <section class="container">
-        <h1 class="title">
-            Submit feedback here
-        </h1>
-        <p class="desc">
-            You will receive an email when your feedback has been addressed.
-        </p>
-        <Form/>
-    </section>
-
+    <LayoutGroup>
+        <motion.section layout class="container">
+            <motion.h1 layout class="title">
+                Submit feedback here
+            </motion.h1>
+            <motion.p layout class="desc">
+                You will receive an email when your feedback has been addressed.
+            </motion.p>
+            <Form/>
+        </motion.section>
+    </LayoutGroup>
 </template>
 
 <style scoped>
+
     .container{
         width: 400px;
-        height: 670px;
+        height: fit-content;
         border-radius: 10px;
-        position: absolute;
+        position: fixed;
         inset: 0;
         margin: auto;
         border: 3px solid var(--blue-100);

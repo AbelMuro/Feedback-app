@@ -1,6 +1,7 @@
 <script setup>
     import icons from './icons';
     import {ref} from 'vue';
+    import {motion} from 'motion-v';
 
     const rating = ref(0);
     const hover = ref(0)
@@ -20,7 +21,7 @@
 </script>
 
 <template>
-    <section class="container_star">
+    <motion.section layout class="container_star">
         <p class="star_title">
             Select Rating: 
         </p>
@@ -98,7 +99,7 @@
                 @mouseleave="handleMouseLeave()"
                 />
         </div>
-    </section>
+    </motion.section>
 
 </template>
 
