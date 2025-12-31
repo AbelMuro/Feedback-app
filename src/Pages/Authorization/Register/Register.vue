@@ -1,13 +1,8 @@
 <script setup>
     import Form from './Form';
-    import { useRouter } from 'vue-router';
-    import {motion, LayoutGroup} from 'motion-v';
+    import { LayoutGroup, motion } from 'motion-v';
 
-    const router = useRouter();
 
-    const handleLink = () => {
-        router.push('/register');
-    }
 </script>
 
 <template>
@@ -17,16 +12,12 @@
             layout
             >
             <h1 class="title">
-                Login
+                Register
             </h1>
             <p class="desc">
-                Sign in to your account.
+                Create an account. Password must have a letter, number, symbol and 8 characters.
             </p>
             <Form/>
-            <div class="links">
-                Don't have an account? 
-                <a @click="handleLink">Register here</a>
-            </div>
         </motion.section>
     </LayoutGroup>
 </template>
@@ -67,27 +58,4 @@
         color: var(--white-100);
         text-align: center;
     }
-
-    .links{
-        font-family: var(--preset-text-3-fontfamily);
-        font-size: var(--preset-text-3-fontsize);
-        line-height: var(--preset-text-3-lineheight);
-        letter-spacing: var(--preset-text-3-letterspacing);
-        color: var(--white-200);
-    }
-
-    .links > a{
-        color: var(--blue-0);
-        text-decoration: underline;
-        cursor: pointer;
-    }
-
-    .links > a:hover{
-        color: var(--blue-100);
-    }
-
-    .links > a.active{
-        color: var(--blue-200);
-    }
-
 </style>
