@@ -3,12 +3,7 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently on the ReEnterPassword component
-
-        i need to check the shared states between the Form component and the ReEnterComponent
-        within the handleSubmit handler
-
-        then i can go to the back end to create the routes
+        this is where i left off, i am currently on the back end
     */
 
 </script>

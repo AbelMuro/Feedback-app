@@ -1,13 +1,18 @@
 <script setup>
+    import {ref} from 'vue';
     import {motion} from 'motion-v';
     import EnterEmail from '~/Common/Components/EnterEmail';
     import EnterPassword from '~/Common/Components/EnterPassword';
     import {useToastStore} from '~/Store';
+    import {VueSpinner} from 'vue3-spinners';
 
+    const loading = ref(false);
     const store = useToastStore();
     const {showToast} = store;
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
+        loading.value = true;
         const email = e.target.elements.email.value;
         const password = e.target.elements.password.value;
 
@@ -19,7 +24,8 @@
                 },
                 body: JSON.stringify({
                     email, password
-                })
+                }),
+                credentials: 'include',
             });
 
 
@@ -39,6 +45,9 @@
             const message = error.message;
             console.log(message);
             showToast(message);
+        }
+        finally{
+            loading.value = false;
         }
     }
 

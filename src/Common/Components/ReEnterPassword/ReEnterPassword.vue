@@ -6,11 +6,13 @@
 
     const error = ref('');
 
-    const handleInput = () => {
+    const handleInput = (e) => {
+        e.target.setCustomValidity('');
         error.value = '';
     }
 
     const handleBlur = (e) => {
+        e.target.setCustomValidity('');
         const valueMissing = e.target.validity.valueMissing;
         const patternMismatch = e.target.validity.patternMismatch;
 
@@ -18,8 +20,18 @@
             error.value = "Can't be empty";
         else if(patternMismatch)
             error.value = "Password doesn't meet the requirements"
-
     }
+
+    const handleInvalid = (e) => {
+        e.target.setCustomValidity('');
+        const valueMissing = e.target.validity.valueMissing;
+
+        if(valueMissing)
+            error.value = "Can't be empty";
+        else
+            error.value = "Password doesn't meet the requirements";
+    }   
+
 </script>
 
 <template>
@@ -30,12 +42,13 @@
         <motion.input
             layout 
             name="password"
-            type="email" 
+            type="password" 
             class='input' 
             pattern="(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}"
             v-model="password"
             @input="handleInput"
             @blur="handleBlur"
+            @invalid="handleInvalid"
             required/>
         <motion.div 
             layout

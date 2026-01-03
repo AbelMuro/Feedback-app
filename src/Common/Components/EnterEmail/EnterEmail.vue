@@ -5,17 +5,28 @@
     const email = ref('');
     const error = ref('');
 
-    const handleInput = () => {
+    const handleInput = (e) => {
         error.value = '';
     }
 
     const handleBlur = (e) => {
+        e.target.setCustomValidity('');
         const invalid = e.target.validity.typeMismatch;
         const valueMissing = e.target.validity.valueMissing;
 
         if(invalid)
             error.value = 'Invalid email';
         else if(valueMissing)
+            error.value = "Can't be empty";
+    }
+
+    const handleInvalid = (e) => {
+        e.target.setCustomValidity('');
+        const invalid = e.target.validity.typeMismatch;
+
+        if(invalid)
+            error.value = 'Invalid email';
+        else 
             error.value = "Can't be empty";
     }
     
@@ -36,6 +47,7 @@
                 v-model="email"
                 @input="handleInput"
                 @blur="handleBlur"
+                @invalid="handleInvalid"
                 required/>
             <motion.div 
                 layout

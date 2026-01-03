@@ -5,15 +5,21 @@
     const password = ref('');
     const error = ref('');
 
-    const handleInput = () => {
+    const handleInput = (e) => {
         error.value = '';
     }
 
     const handleBlur = (e) => {
+        e.target.setCustomValidity('');
         const valueMissing = e.target.validity.valueMissing;
 
         if(valueMissing)
             error.value = "Can't be empty";
+    }
+
+    const handleInvalid = (e) => {
+        e.target.setCustomValidity('');
+        error.value = "Can't be empty";
     }
 </script>
 
@@ -25,11 +31,12 @@
         <motion.input
             layout 
             name="password"
-            type="email" 
+            type="password" 
             class='input' 
             v-model="password"
             @input="handleInput"
             @blur="handleBlur"
+            @invalid="handleInvalid"
             required/>
             <motion.div 
                 layout

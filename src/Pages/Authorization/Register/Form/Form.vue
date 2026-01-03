@@ -5,14 +5,57 @@
     import EnterPassword from '~/Common/Components/ReEnterPassword';
     import ReEnterPassword from '~/Common/Components/ReEnterPassword';
     import {useToastStore} from '~/Store';
+    import { VueSpinner } from 'vue3-spinners'
+    import { useRouter } from 'vue-router';
 
     const password = ref('');
     const reEnterPassword = ref('');
+    const loading = ref(false);
+    const error = ref('');
     const store = useToastStore();
     const {showToast} = store;
+    const router = useRouter();
 
-    const handleSubmit = async () => {
-        
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const email = e.target.elements.email.value;
+        loading.value = true;
+
+        if(password.value !== reEnterPassword.value){
+            error.value = "Passwords don't match";
+            return;
+        }
+        try{
+            const response = await fetch('http://localhost:4000/register_account', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email, password: password.value
+                }),
+            })   
+
+            if(response.status === 200){
+                const result = await response.text();
+                console.log(result);
+                showToast(result);
+            }
+            else{
+                const result = await response.text();
+                console.log(result);
+            }
+        }
+        catch(error){
+            const message = error.message;
+            console.log(message);
+            showToast(message);
+
+        }
+        finally{
+            loading.value = false;
+            router.push('/');
+        }
     }
 </script>
 
@@ -24,8 +67,17 @@
             <EnterEmail/>
             <EnterPassword label="Enter Password:" v-model:password="password"/>
             <ReEnterPassword label="Re-enter Password:" v-model:password="reEnterPassword"/>
-            <button class="form_submit">
+            <div 
+                class="error_message"
+                v-if="error"
+                >
+                {{error}}
+            </div>
+            <button class="form_submit" v-if="!loading">
                 Register
+            </button>
+            <button class="form_submit" v-else>
+                <VueSpinner size="20" color="white"/>
             </button>
     </motion.form>
 </template>
@@ -59,4 +111,14 @@
     .form_submit:active{
         background-color: var(--blue-200);
     }
+
+    .error_message{
+        color: var(--red-100);
+        font-family: var(--preset-text-3-fontfamily);
+        font-size: var(--preset-text-3-fontsize);
+        font-weight: var(--preset-text-3-fontweight);
+        line-height: var(--preset-text-3-lineheight);
+        letter-spacing: var(--preset-text-3-letterspacing);
+    }
+
 </style>
