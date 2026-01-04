@@ -1,5 +1,5 @@
 <script setup>
-    import {ref} from 'vue';
+    import {ref, watch} from 'vue';
     import {motion} from 'motion-v';
     import EnterEmail from '~/Common/Components/EnterEmail';
     import EnterPassword from '~/Common/Components/ReEnterPassword';
@@ -18,13 +18,17 @@
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const email = e.target.elements.email.value;
+        
         loading.value = true;
+        const email = e.target.elements.email.value;
+        const password = e.target.elements.password.value;
+        const reEnterPassword = e.target.elements.reEnterPassword.value;
 
-        if(password.value !== reEnterPassword.value){
-            error.value = "Passwords don't match";
+        if(password !== reEnterPassword) {
+            error.value = "Password's don't match";
             return;
-        }
+        };
+
         try{
             const response = await fetch('http://localhost:4000/register_account', {
                 method: 'POST',
@@ -32,7 +36,7 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    email, password: password.value
+                    email, password
                 }),
             })   
 
@@ -40,10 +44,12 @@
                 const result = await response.text();
                 console.log(result);
                 showToast(result);
+                router.push('/');
             }
             else{
                 const result = await response.text();
                 console.log(result);
+                showToast(result);
             }
         }
         catch(error){
@@ -54,19 +60,23 @@
         }
         finally{
             loading.value = false;
-            router.push('/');
         }
     }
+
+    watch([password, reEnterPassword], () => {
+        error.value = '';
+    }, {flush: 'sync'})
+
 </script>
 
 <template>
     <motion.form 
         layout 
         class="form" 
-        @submit="handleSubmit">
+        @submit="(e) => handleSubmit(e, password, reEnterPassword)">
             <EnterEmail/>
-            <EnterPassword label="Enter Password:" v-model:password="password"/>
-            <ReEnterPassword label="Re-enter Password:" v-model:password="reEnterPassword"/>
+            <EnterPassword label="Enter Password:" name='password' v-model:password="password"/>
+            <ReEnterPassword label="ReEnter Password:" name='reEnterPassword' v-model:password="reEnterPassword"/>
             <div 
                 class="error_message"
                 v-if="error"

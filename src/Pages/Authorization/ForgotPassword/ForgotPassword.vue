@@ -6,11 +6,7 @@
     const router = useRouter();
 
     const handleLink = () => {
-        router.push('/register');
-    }
-
-    const handleReset = () => {
-        router.push('/forgot_password');
+        router.push('/');
     }
 
 </script>
@@ -22,21 +18,15 @@
             layout
             >
             <h1 class="title">
-                Login
+                Forgot Password
             </h1>
             <p class="desc">
-                Sign in to your account.
+                Enter your email and we will send you a link to reset your password.
             </p>
             <Form/>
             <div class="links">
-                Don't have an account? 
-                <a @click="handleLink">Register here</a>
-            </div>
-            <div class="links">
-                Forgot your password?
-                <a @click="handleReset"> 
-                    Reset here
-                </a>
+                Go back to 
+                <a @click="handleLink">Login</a>
             </div>
         </motion.section>
     </LayoutGroup>

@@ -1,5 +1,5 @@
 <script setup>
-    import {ref} from 'vue';
+    import {ref, watch} from 'vue';
     import {motion} from 'motion-v';
 
     const email = ref('');
@@ -29,6 +29,7 @@
         else 
             error.value = "Can't be empty";
     }
+    
     
 </script>
 

@@ -1,33 +1,28 @@
 <script setup>
     import {ref} from 'vue';
-    import {motion} from 'motion-v';
     import EnterEmail from '~/Common/Components/EnterEmail';
-    import EnterPassword from '~/Common/Components/EnterPassword';
-    import {useToastStore} from '~/Store';
     import {VueSpinner} from 'vue3-spinners';
+    import {useToastStore} from '~/Store';
+    import {motion} from 'motion-v';
 
     const loading = ref(false);
     const store = useToastStore();
     const {showToast} = store;
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
         loading.value = true;
         const email = e.target.elements.email.value;
-        const password = e.target.elements.password.value;
 
         try{
-            const response = await fetch('http://localhost:4000/login', {
-                method: 'PUT', 
+            const response = await fetch('http://localhost:4000/forgot_password', {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    email, password
-                }),
-                credentials: 'include',
+                    email
+                })
             });
-
 
             if(response.status === 200){
                 const result = await response.text();
@@ -59,9 +54,8 @@
         class="form" 
         @submit="handleSubmit">
             <EnterEmail/>
-            <EnterPassword/>
             <button v-if="!loading" class="form_submit">
-                Login
+                Send Link
             </button>
             <button v-else class="form_submit">
                 <VueSpinner size="25" color="white"/>

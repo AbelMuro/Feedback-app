@@ -1,7 +1,7 @@
 <script setup>
     import {ref} from 'vue';
     import {motion} from 'motion-v';
-    const {label} = defineProps(['label']);
+    const {label, name} = defineProps(['label', 'name']);
     const {password} = defineModel('password');
 
     const error = ref('');
@@ -41,7 +41,7 @@
         </motion.label>
         <motion.input
             layout 
-            name="password"
+            :name="name"
             type="password" 
             class='input' 
             pattern="(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}"

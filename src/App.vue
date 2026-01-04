@@ -3,7 +3,8 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently on the back end
+        this is where i left off, i am finished with the ForgotPassword component
+        now i need to create the corresponding route on the back end
     */
 
 </script>
