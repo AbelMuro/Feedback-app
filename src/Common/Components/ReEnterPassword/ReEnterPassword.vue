@@ -7,7 +7,6 @@
     const error = ref('');
 
     const handleInput = (e) => {
-        e.target.setCustomValidity('');
         error.value = '';
     }
 

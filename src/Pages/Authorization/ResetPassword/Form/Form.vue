@@ -1,10 +1,17 @@
 <script setup>
     import {ref} from 'vue';
-    import EnterEmail from '~/Common/Components/EnterEmail';
+    import EnterPassword from '~/Common/Components/ReEnterPassword';
+    import ReEnterPassword from '~/Common/Components/ReEnterPassword';
     import {VueSpinner} from 'vue3-spinners';
     import {useToastStore} from '~/Store';
     import {motion} from 'motion-v';
+    import {useRouter, useRoute} from 'vue-router';
 
+    const route = useRoute();
+    const router = useRouter();
+    const password = ref('');
+    const reEnterPassword = ref('');
+    const error = ref('');
     const loading = ref(false);
     const store = useToastStore();
     const {showToast} = store;
@@ -13,39 +20,42 @@
         e.preventDefault();
 
         try{
-            loading.value = true;
-            const email = e.target.elements.email.value;
+            const password = e.target.elements.password.value;
+            const reEnterPassword = e.target.elements.reEnterPassword.value;
+            const token = route.params.token;
 
-            const response = await fetch('http://localhost:4000/forgot_password', {
+            if(password !== reEnterPassword){
+                error.value = '';
+                return;
+            }
+
+            const response = await fetch('http://localhost:4000/reset_password', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    email
-                }),
-                credentials: 'include'
-            });
+                    password, token
+                })
+            })
 
             if(response.status === 200){
                 const result = await response.text();
                 console.log(result);
                 showToast(result);
+                router.push('/');
             }
             else{
                 const result = await response.text();
                 console.log(result);
                 showToast(result);
             }
-
         }
+
         catch(error){
             const message = error.message;
             console.log(message);
             showToast(message);
-        }
-        finally{
-            loading.value = false;
         }
     }
 
@@ -56,9 +66,10 @@
         layout 
         class="form" 
         @submit="handleSubmit">
-            <EnterEmail/>
+            <EnterPassword v-model="password" name="password" label="Enter Password: "/>
+            <ReEnterPassword v-model="reEnterPassword" name="reEnterPassword" label="Re-enter Password: "/>
             <button v-if="!loading" class="form_submit">
-                Send Link
+                Reset Password
             </button>
             <button v-else class="form_submit">
                 <VueSpinner size="25" color="white"/>
@@ -67,7 +78,7 @@
 </template>
 
 <style scoped>
-    .form{
+ .form{
         display: flex;
         flex-direction: column;
         gap: 10px;

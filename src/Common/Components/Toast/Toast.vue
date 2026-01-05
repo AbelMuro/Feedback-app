@@ -8,6 +8,10 @@
     const {open, message} = storeToRefs(store);
     const {hideToast} = store;
 
+    const handleClose = () => {
+        hideToast();
+    }
+
     watch(open, () => {
         setTimeout(() => {
             hideToast();
@@ -27,7 +31,7 @@
             :transition="{duration: 0.4}"
             >
                 {{message}}
-            <img class="toast_close"/>
+            <img class="toast_close" @click="handleClose"/>
         </motion.div>
     </AnimatePresence>
 </template>
