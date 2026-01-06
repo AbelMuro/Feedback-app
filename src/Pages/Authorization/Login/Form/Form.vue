@@ -1,11 +1,13 @@
 <script setup>
     import {ref} from 'vue';
     import {motion} from 'motion-v';
+    import { useRouter } from 'vue-router';
     import EnterEmail from '~/Common/Components/EnterEmail';
     import EnterPassword from '~/Common/Components/EnterPassword';
     import {useToastStore} from '~/Store';
     import {VueSpinner} from 'vue3-spinners';
 
+    const router = useRouter();
     const loading = ref(false);
     const store = useToastStore();
     const {showToast} = store;
@@ -33,6 +35,7 @@
                 const result = await response.text();
                 console.log(result);
                 showToast(result);
+                router.push('/home');
             }
             else{
                 const result = await response.text();

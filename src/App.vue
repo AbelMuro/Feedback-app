@@ -3,9 +3,9 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am FINALLY finished with the authorization
+        this is where i left off, i am currently designing the home page
 
-        now i can start desiging the home page of the app
+        i want to design a new background image
     */
 
 </script>
@@ -20,6 +20,8 @@
         width: 100%;
         min-height: 100vh;
         background: var(--background-gradient);
+        margin: 0px;
+        padding: 0px;
     }
 
     *{
@@ -32,16 +34,29 @@
         src: url('../public/Roboto.ttf');
     }
 
+    @font-face{
+        font-family: 'archivo black';
+        src: url('../public/ArchivoBlack.ttf');
+    }
+
     :root{
         --background-gradient: linear-gradient(213deg,rgba(8, 8, 8, 1) 0%, rgba(1, 32, 99, 1) 49%, rgba(0, 6, 69, 1) 99%);
         --black-100: rgb(28, 28, 28);
         --white-0: white;
         --white-100: rgb(198, 198, 198);
         --white-200: rgb(216, 216, 216);
-        --blue-0: rgb(0, 0, 255);       
+        --blue-0: #0000ff;       
         --blue-100:#0000e2;
         --blue-200: rgb(0, 0, 192);
+        --blue-300: rgb(1, 1, 162);
+        --blue-transparent: rgba(0, 0, 255, 0.3);
         --red-100: rgb(204, 0, 0);
+
+        --preset-text-0-fontfamily: 'archive black';
+        --preset-text-0-fontweight: 800;
+        --preset-text-0-fontsize: 5rem;
+        --preset-text-0-lineheight: 140%;
+        --preset-text-0-letterspacing: 0px;
 
         --preset-text-1-fontfamily: 'roboto';
         --preset-text-1-fontweight: 500;

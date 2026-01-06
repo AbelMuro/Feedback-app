@@ -6,6 +6,7 @@ import Login from './Pages/Authorization/Login';
 import Register from './Pages/Authorization/Register';
 import ForgotPassword from './Pages/Authorization/ForgotPassword';
 import ResetPassword from './Pages/Authorization/ResetPassword';
+import Home from './Pages/Home';
 
 const router = createRouter({
     history: createWebHistory(),                        //this will save the URL endpoint of every route, and display it in the URL
@@ -13,7 +14,8 @@ const router = createRouter({
         {path: '/', component: Login},
         {path: '/register', component: Register},
         {path: '/forgot_password', component: ForgotPassword},
-        {path: '/reset_password/:token', component: ResetPassword}
+        {path: '/reset_password/:token', component: ResetPassword},
+        {path: '/home', component: Home}
     ],
 })
 
