@@ -43,7 +43,7 @@
 </template>
 
 <style scoped>
- .container{
+    .container{
         width: 400px;
         height: fit-content;
         padding: 20px;
@@ -55,6 +55,19 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
+    }
+
+    .container::after{
+        content: '';
+        width: 97.5%;
+        height: 98%;
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        z-index: var(--farthest);
+        border: 9px solid var(--blue-200);
+        border-radius: 15px;
+        filter: var(--blur-border);
     }
 
     .title{

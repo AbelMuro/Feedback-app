@@ -47,6 +47,19 @@
         gap: 15px;
     }
 
+    .container::after{
+        content: '';
+        width: 97.5%;
+        height: 98%;
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        z-index: var(--farthest);
+        border: 9px solid var(--blue-200);
+        border-radius: 15px;
+        filter: var(--blur-border);
+    }
+
     .title{
         margin: 0px;
         font-family: var(--preset-text-1-fontfamily);
