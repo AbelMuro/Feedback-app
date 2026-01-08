@@ -5,6 +5,10 @@
 <template>
     <footer class="footer">
         <img class="footer_image" :src="icons['amazon']"/>
+        <img class="footer_image" :src="icons['facebook']"/>
+        <img class="footer_image" :src="icons['linkedin']"/>
+        <img class="footer_image" :src="icons['youtube']"/>
+        <img class="footer_image" :src="icons['discord']"/>
     </footer>
 </template>
 
@@ -15,12 +19,30 @@
         background-color: var(--black-transparent);
         display: flex;
         justify-content: center;
-        align-items: center;
-        gap: 15px;
+        gap: 25px;
     }
 
     .footer_image{
-        width: 80px;
         object-fit: contain;
+    }
+
+    .footer_image:nth-of-type(1){
+        width: 60px
+    }
+
+    .footer_image:nth-of-type(2){
+        width: 50px;
+    }
+
+    .footer_image:nth-of-type(3){
+        width: 55px;
+    }
+
+    .footer_image:nth-of-type(4){
+        width: 60px;
+    }
+
+    .footer_image:nth-of-type(5){
+        width: 50px;
     }
 </style>

@@ -1,14 +1,18 @@
 <script setup>
+    import NavigationBar from './Common/Components/NavigationBar'
     import Toast from './Common/Components/Toast';
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently designing the footer bar component
+        this is where i left off, i am currently designing the Account component
+
+        i want to add a bit of animation with framer-motion on the account options component
     */
 
 </script>
 
 <template>
+    <NavigationBar/>
     <RouterView/>
     <Toast/>
 </template>
@@ -44,7 +48,6 @@
         --far: 25;
         --farthest: -1;
 
-
         --background-gradient: linear-gradient(213deg,rgba(8, 8, 8, 1) 0%, rgba(0, 11, 77, 1) 45%, rgba(0, 8, 53, 1) 66%, rgba(0, 2, 10, 1) 100%);
         --black-transparent: rgba(0, 0, 0, 0.5);
         --black-100: rgb(28, 28, 28);
@@ -63,7 +66,6 @@
         --blur-button-active: blur(50px);
 
         --blur-border: blur(10px);
-
 
         --preset-text-0-fontfamily: 'bebas neue';
         --preset-text-0-fontweight: 800;
@@ -88,6 +90,12 @@
         --preset-text-3-fontsize: 1rem;
         --preset-text-3-lineheight: 140%;
         --preset-text-3-letterspacing: 0px;
+
+        --preset-text-4-fontfamily: 'roboto';
+        --preset-text-4-fontweight: 300;
+        --preset-text-4-fontsize: 0.8rem;
+        --preset-text-4-lineheight: 140%;
+        --preset-text-4-letterspacing: 0px;
     }
 
 </style>

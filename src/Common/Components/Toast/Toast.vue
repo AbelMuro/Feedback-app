@@ -42,7 +42,7 @@
         height: fit-content;
         padding: 15px;
         position: fixed;
-        top: 30px;
+        top: 60px;
         right: 10px;
         font-family: 'roboto';
         font-size: 1rem;

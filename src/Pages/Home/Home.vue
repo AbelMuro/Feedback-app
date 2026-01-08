@@ -1,10 +1,16 @@
 <script setup>
-    import NavigationBar from './NavigationBar';
     import FooterBar from './FooterBar';
+    import {useRouter} from 'vue-router';
+
+    const router = useRouter();
+
+    const handleStart = () => {
+        router.push('/feedback');
+    }
+
 </script>
 
 <template>
-    <NavigationBar/>
     <header class="header">
         <section class="header_content">
             <h1 class="header_title">
@@ -14,7 +20,7 @@
                 Our team will address your feedback and will
                 notify you as soon as possible
             </h2>
-            <button class="submit">
+            <button class="submit" @click="handleStart">
                 Start Here
             </button>
         </section>

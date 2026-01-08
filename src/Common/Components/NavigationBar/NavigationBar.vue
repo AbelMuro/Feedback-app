@@ -1,42 +1,92 @@
 <script setup>
+    import { onMounted, ref , watch} from 'vue';
     import {useRouter} from 'vue-router';
     import icons from '~/../public/icons';
 
     const router = useRouter();
+    const loggedIn = ref(false);
 
     const handleRegister = () => {
         router.push('/register')
     }
 
     const handleLogin = () => {
-        router.push('/');
+        router.push('/login');
     }
+
+    const handleLink = (link) => {
+        router.push(link)
+    }
+
+    const handleAccount = () => {
+        router.push('/account')
+    }
+
+    const checkLoggedInStatus = async () => {
+        try{
+            const response = await fetch('/authorization', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            });
+
+            if(response.status === 200){
+                const result = await response.text();
+                console.log(result);
+                loggedIn.value = true;
+            }
+            else{
+                const result = await response.text();
+                console.log(result);
+                loggedIn.value = false;
+            }
+        }
+        catch(error){
+            const message = error.message;
+            console.log(message);
+            loggedIn.value = false;
+        }
+    }
+
+    onMounted(() => {
+        checkLoggedInStatus();
+    })
+
+    watch(loggedIn, (loggedIn) => {
+        console.log(loggedIn);
+    })
+
 </script>
 
 <template>
     <nav class="nav">
         <img class="nav_logo" :src="icons['logo']">
         <ul class="links">
-            <li class="link">
+            <li class="link" @click="() => handleLink('/')">
                 Home
             </li>
-            <li class="link">
+            <li class="link" @click="() => handleLink('/')">
                 About Us
             </li>
-            <li class="link">
+            <li class="link" @click="() => handleLink('/')">
                 Contact Us
             </li>
-            <li class="link">
+            <li class="link" @click="() => handleLink('/')">
                 Jobs
             </li>
         </ul>
         <div class="buttons">
-            <button class="register" @click="handleRegister">
+            <button v-if="!loggedIn" class="register" @click="handleRegister">
                 Sign Up
             </button>
-            <button class="login" @click="handleLogin">
+            <button v-if="!loggedIn" class="login" @click="handleLogin">
                 Login
-            </button>            
+            </button>    
+            <button v-else class="account" @click="handleAccount">
+                Account
+            </button>
         </div>
     </nav>
 </template>
@@ -112,7 +162,7 @@
         color: var(--blue-200);
     }
 
-    .login{
+    .login, .account{
         width: 100px;
         height: 40px;
         border-radius: 10px;
@@ -128,7 +178,7 @@
         position: relative;
     }
 
-    .login::after{
+    .login::after, .account::after{
         width: 100px;
         height: 40px;
         content: '';
@@ -141,19 +191,19 @@
         transition: all 0.2s linear;
     }
 
-    .login:hover{
+    .login:hover, .account:hover{
         background-color: var(--blue-100);
     }
 
-    .login:hover::after{
+    .login:hover::after, .account:hover::after{
         filter: var(--blur-button-hover);
     }
 
-    .login:active{
+    .login:active, .account:active{
         background-color: var(--blue-200);
     }
 
-    .login:active::after{
+    .login:active::after, .account:active::after{
         filter: var(--blur-button-active)
     }
 
