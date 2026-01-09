@@ -4,9 +4,7 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently designing the Account component
-
-        i want to add a bit of animation with framer-motion on the account options component
+        this is where i left off, i am currently designing the Feedback web page component
     */
 
 </script>

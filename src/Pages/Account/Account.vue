@@ -1,4 +1,5 @@
 <script setup>
+    import { RouterView } from 'vue-router';
     import AccountOptions from './AccountOptions';
 </script>
 
@@ -16,20 +17,17 @@
             </div>
             <AccountOptions/>
         </div>
-
+        <RouterView/>
     </section>
 </template>
 
 <style scoped>
     .account{
-        width: 600px;
-        height: 600px;
+        width: 100%;
+        min-height: calc(100vh - 100px);
         border-radius: 15px;
-        border: 1px solid var(--blue-0);
-        position: fixed;
-        inset: 0;
-        margin: auto;
-        display: flex;
+        display: grid;
+        grid-template-columns: 200px 1fr;
     }
 
     .account_user{
@@ -59,11 +57,13 @@
     }
 
     .account_settings{
+        width: 100%;
         display: flex;
         flex-direction: column;
         padding-top: 25px;
         gap: 25px;
-        border-right: 1px solid var(--blue-0);
+        border: 1px solid var(--blue-0);
+        border-radius: 10px;
     }
 
     .account_image{

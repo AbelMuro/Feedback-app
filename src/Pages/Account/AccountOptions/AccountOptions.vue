@@ -1,33 +1,40 @@
 <script setup>
+    import {watch} from 'vue';
+    import {motion} from 'motion-v';
+    import {useRouter} from 'vue-router';
     import {ref} from 'vue';
 
+    const router = useRouter();
     const option = ref('settings');
 
     const handleOption = (opt) => {
         option.value = opt;
     }
+
+    watch(option, (option) => {
+        router.push(`/account/${option}`);
+    }, {
+        immediate: true,
+        flush: 'post'
+    })
 </script>
 
 <template>
     <ul class="account_options">
         <li class="account_option" @click="() => handleOption('settings')">
             Settings
-            <div class="line" v-if="option === 'settings'"/>
+            <motion.div layoutId="line" class="line" v-if="option === 'settings'"/>
         </li>
-        <li class="account_option" @click="() => handleOption('password')">
-            Password
-            <div class="line" v-if="option === 'password'"/>
-        </li>
-        <li class="account_option" @click="() => handleOption('notification')">
-            Notification
-            <div class="line" v-if="option === 'notification'"/>
+        <li class="account_option" @click="() => handleOption('feedback')">
+            Feedback
+            <motion.div layoutId="line" class="line" v-if="option === 'feedback'"/>
         </li>
     </ul>
 </template>
 
 <style scoped>
     .account_options{
-        width: 200px;
+        width: 100%;
         height: 100%;
         grid-column: 1/2;
         grid-row: 2/3;
