@@ -2,14 +2,19 @@
     import {watch} from 'vue';
     import {motion} from 'motion-v';
     import {useRouter} from 'vue-router';
+    import {useDialogStore} from '~/Store';
     import {ref} from 'vue';
+    import LogOut from './LogOut';
 
     const router = useRouter();
     const option = ref('settings');
+    const store = useDialogStore();
+    const {showDialog} = store;
 
     const handleOption = (opt) => {
         option.value = opt;
     }
+
 
     watch(option, (option) => {
         router.push(`/account/${option}`);
@@ -29,6 +34,7 @@
             Feedback
             <motion.div layoutId="line" class="line" v-if="option === 'feedback'"/>
         </li>
+        <LogOut/>
     </ul>
 </template>
 

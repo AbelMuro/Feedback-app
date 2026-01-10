@@ -4,7 +4,7 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently designing the Feedback web page component
+        this is where i left off, i am currently designing the LogOut component and the Dialog component
     */
 
 </script>
