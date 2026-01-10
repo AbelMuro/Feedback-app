@@ -42,7 +42,7 @@
         height: fit-content;
         padding: 15px;
         position: fixed;
-        top: 60px;
+        top: 100px;
         right: 10px;
         font-family: 'roboto';
         font-size: 1rem;
@@ -64,7 +64,6 @@
         mask-repeat: no-repeat;
         mask-size: 17px 17px;
         background-color: var(--white-0);
-
     }
 
     .toast_close:hover{

@@ -2,11 +2,52 @@
     import {motion, LayoutGroup} from 'motion-v';
     import EnterEmail from '~/Common/Components/EnterEmail';
     import EnterPassword from '~/Common/Components/EnterPassword';
+    import {useRouter} from 'vue-router';
+
+    const router = useRouter();
+
+    const handleSubmit = async (e) => {
+
+        try{
+            e.preventDefault();
+            const email = e.target.elements.email.value;
+            const password = e.target.elements.password.value;
+
+            const response = await fetch('http://localhost:4000/update_account', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email, password
+                }),
+                credentials: 'include',
+            });
+
+            if(response.status === 200){
+                const result = await response.text();
+                console.log(result);
+            }
+            else if (response.status === 401){
+                const result = await response.text();
+                console.log(result);
+                router.push('/login');
+            }
+            else{
+                const result = await response.text();
+                console.log(result);
+            }
+        }
+        catch(error){
+            const message = error.message;
+            console.log(message);
+        }
+    }
 </script>
 
 <template>
     <LayoutGroup>
-        <motion.form layout class="settings">
+        <motion.form layout class="settings" @submit="handleSubmit">
             <motion.fieldset layout class="settings_header">
                 <label layout class="settings_title">
                     Account Details

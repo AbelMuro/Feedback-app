@@ -1,5 +1,5 @@
 <script setup>
-    import { onMounted, ref , watch} from 'vue';
+    import { onMounted, ref , onUnmounted} from 'vue';
     import {useRouter} from 'vue-router';
     import icons from '~/../public/icons';
 
@@ -15,16 +15,16 @@
     }
 
     const handleLink = (link) => {
-        router.push(link)
+        router.push(link);
     }
 
     const handleAccount = () => {
-        router.push('/account')
+        router.push('/account');
     }
 
     const checkLoggedInStatus = async () => {
         try{
-            const response = await fetch('/authorization', {
+            const response = await fetch('http://localhost:4000/authorization', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -52,10 +52,11 @@
 
     onMounted(() => {
         checkLoggedInStatus();
+        document.addEventListener('auth_change', checkLoggedInStatus);
     })
 
-    watch(loggedIn, (loggedIn) => {
-        console.log(loggedIn);
+    onUnmounted(() => {
+        document.removeEventListener('auth_change', checkLoggedInStatus);
     })
 
 </script>

@@ -4,7 +4,8 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently designing the LogOut component and the Dialog component
+        this is where i left off, i am currently updating the Register component with the 
+        SelectImage component
     */
 
 </script>

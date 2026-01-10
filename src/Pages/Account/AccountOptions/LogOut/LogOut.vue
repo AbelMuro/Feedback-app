@@ -1,20 +1,55 @@
 <script setup>
     import {ref} from 'vue';
+    import {useToastStore} from '~/Store';
+    import {useRouter} from 'vue-router';
     import Dialog from '~/Common/Components/Dialog';
 
     const open = ref(false);
+    const store = useToastStore();
+    const router = useRouter();
+    const {showToast} = store;
 
     const handleOpen = () => {
         open.value = !open.value;
     }
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
+        try{
+            const response = await fetch('http://localhost:4000/logout', {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+            });
 
+            if(response.status === 200){
+                const result = await response.text();
+                console.log(result);
+                showToast(result);
+                const event = new CustomEvent('auth_change');
+                document.dispatchEvent(event);
+                router.push('/login');
+            }   
+            else{
+                const result = await response.text();
+                console.log(result);
+                showToast(result);
+            }
+
+        }
+        catch(error){
+            const message = error.message;
+            console.log(message);
+            showToast(message);
+        }
     }
+
+
 </script>
 
 <template>
-    <li class="account_option" @click="handleLogout">
+    <li class="account_option" @click="handleOpen">
         Log Out
     </li>
     <Dialog 

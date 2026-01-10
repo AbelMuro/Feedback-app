@@ -35,7 +35,9 @@
                 const result = await response.text();
                 console.log(result);
                 showToast(result);
-                router.push('/home');
+                const event = new CustomEvent('auth_change');
+                document.dispatchEvent(event);
+                router.push('/');
             }
             else{
                 const result = await response.text();

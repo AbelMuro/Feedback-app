@@ -3,7 +3,9 @@
     import {watch} from 'vue';
     const {open, message, handleOpen, handleSubmit} = defineProps(['open', 'message', 'handleOpen', 'handleSubmit'])
     
-
+    watch(() => open, (open) => {
+        console.log(open);
+    }, {flush: 'post'})
 
 </script>
 
@@ -12,8 +14,8 @@
         <motion.div 
             v-if="open"
             :initial="{opacity: 0}"
-            :animate="{opacity: 1}"
-            :exit="{opacity: 0}"
+            :animate="{opacity: 1, transition: {when: 'beforeChildren'}}"
+            :exit="{opacity: 0, transition: {when: 'afterChildren'}}"
             class="overlay">
                 <motion.dialog 
                     v-if="open"

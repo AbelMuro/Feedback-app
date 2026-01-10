@@ -1,9 +1,11 @@
 <script setup>
     import {ref, watch} from 'vue';
     import {motion} from 'motion-v';
+    import EnterName from '~/Common/Components/EnterName';
     import EnterEmail from '~/Common/Components/EnterEmail';
     import EnterPassword from '~/Common/Components/ReEnterPassword';
     import ReEnterPassword from '~/Common/Components/ReEnterPassword';
+    import SelectImage from '~/Common/Components/SelectImage';
     import {useToastStore} from '~/Store';
     import { VueSpinner } from 'vue3-spinners'
     import { useRouter } from 'vue-router';
@@ -20,6 +22,7 @@
         e.preventDefault();
         
         loading.value = true;
+        const name = e.target.elements.name.value;
         const email = e.target.elements.email.value;
         const password = e.target.elements.password.value;
         const reEnterPassword = e.target.elements.reEnterPassword.value;
@@ -36,7 +39,7 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    email, password
+                    name, email, password
                 }),
             })   
 
@@ -74,9 +77,11 @@
         layout 
         class="form" 
         @submit="(e) => handleSubmit(e, password, reEnterPassword)">
+            <EnterName/>
             <EnterEmail/>
             <EnterPassword label="Enter Password:" name='password' v-model:password="password"/>
-            <ReEnterPassword label="ReEnter Password:" name='reEnterPassword' v-model:password="reEnterPassword"/>
+            <ReEnterPassword label="Re-enter Password:" name='reEnterPassword' v-model:password="reEnterPassword"/>
+            <SelectImage/>
             <div 
                 class="error_message"
                 v-if="error"
