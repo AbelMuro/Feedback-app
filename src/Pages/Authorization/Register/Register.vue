@@ -13,41 +13,49 @@
 
 <template>
     <LayoutGroup>
-        <motion.section 
-            class="container"
-            layout
-            >
-            <h1 class="title">
-                Register
-            </h1>
-            <p class="desc">
-                Create an account. Password must have a letter, number, symbol and 8 characters.
-            </p>
-            <Form/>
-            <div class="links" @click="handleLink">
-                Already have an account? 
-                <a>Log in here</a>
-            </div>
-        </motion.section>
+        <div class="container">
+            <motion.section 
+                class="register"
+                layout
+                >
+                <h1 class="title">
+                    Register
+                </h1>
+                <p class="desc">
+                    Create an account. Password must have a letter, number, symbol and 8 characters.
+                </p>
+                <Form/>
+                <div class="links" @click="handleLink">
+                    Already have an account? 
+                    <a>Log in here</a>
+                </div>
+            </motion.section>
+        </div>
     </LayoutGroup>
 </template>
 
 <style scoped>
     .container{
+        width: 100%;
+        min-height: calc(100vh - 100px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .register{
         width: 400px;
         height: fit-content;
         padding: 20px;
-        position: fixed;
-        inset: 0;
-        margin: auto;
         border: 1px solid var(--blue-200);
         border-radius: 15px;
         display: flex;
         flex-direction: column;
         gap: 15px;
+        position: relative;
     }
 
-    .container::after{
+    .register::after{
         content: '';
         width: 97.5%;
         height: 98%;

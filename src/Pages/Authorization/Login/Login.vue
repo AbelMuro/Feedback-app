@@ -16,48 +16,57 @@
 </script>
 
 <template>
-    <LayoutGroup>
-        <motion.section 
-            class="container"
-            layout
-            >
-            <h1 class="title">
-                Login
-            </h1>
-            <p class="desc">
-                Sign in to your account.
-            </p>
-            <Form/>
-            <div class="links">
-                Don't have an account? 
-                <a @click="handleLink">Register here</a>
-            </div>
-            <div class="links">
-                Forgot your password?
-                <a @click="handleReset"> 
-                    Reset here
-                </a>
-            </div>
-        </motion.section>
-    </LayoutGroup>
+    <div class="container">
+        <LayoutGroup>
+            <motion.section 
+                class="login"
+                layout
+                >
+                <h1 class="title">
+                    Login
+                </h1>
+                <p class="desc">
+                    Sign in to your account.
+                </p>
+                <Form/>
+                <div class="links">
+                    Don't have an account? 
+                    <a @click="handleLink">Register here</a>
+                </div>
+                <div class="links">
+                    Forgot your password?
+                    <a @click="handleReset"> 
+                        Reset here
+                    </a>
+                </div>
+            </motion.section>
+        </LayoutGroup>
+    </div>
+
 </template>
 
 <style scoped>
     .container{
+        width: 100%;
+        min-height: calc(100vh - 100px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login{
         width: 400px;
         height: fit-content;
         padding: 20px;
-        position: fixed;
-        inset: 0;
-        margin: auto;
         border: 1px solid var(--blue-200);
         border-radius: 15px;
         display: flex;
         flex-direction: column;
         gap: 15px;
+        position: relative;
     }
 
-    .container::after{
+    .login::after{
         content: '';
         width: 97.5%;
         height: 98%;

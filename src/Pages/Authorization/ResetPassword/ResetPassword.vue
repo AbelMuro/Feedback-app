@@ -22,34 +22,40 @@
 
 
 <template>
-    <LayoutGroup>
-        <motion.section 
-            class="container"
-            layout
-            >
-            <h1 class="title">
-                Reset Password
-            </h1>
-            <p class="desc">
-                Enter a password that has at least 1 letter, 1 number, 1 symbol and 8 characters
-            </p>
-            <Form/>
-            <div class="links">
-                Go back to 
-                <a @click="handleLink">Login</a>
-            </div>
-        </motion.section>
-    </LayoutGroup>
+    <div class="container">
+        <LayoutGroup>
+            <motion.section 
+                class="container"
+                layout
+                >
+                <h1 class="title">
+                    Reset Password
+                </h1>
+                <p class="desc">
+                    Enter a password that has at least 1 letter, 1 number, 1 symbol and 8 characters
+                </p>
+                <Form/>
+                <div class="links">
+                    Go back to 
+                    <a @click="handleLink">Login</a>
+                </div>
+            </motion.section>
+        </LayoutGroup>
+    </div>
+
 </template>
 
 <style scoped>
     .container{
+        width: 100%;
+        min-height: calc(100vh - 100px);
+    }
+
+    .reset{
         width: 400px;
         height: fit-content;
         padding: 20px;
-        position: fixed;
-        inset: 0;
-        margin: auto;
+        position: relative;
         border: 1px solid var(--blue-200);
         border-radius: 15px;
         display: flex;
@@ -57,7 +63,7 @@
         gap: 15px;
     }
 
-    .container::after{
+    .reset::after{
         content: '';
         width: 97.5%;
         height: 98%;

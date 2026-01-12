@@ -1,12 +1,13 @@
 <script setup>
-    import {ref} from 'vue';
+    import {ref, watch} from 'vue';
     import {motion} from 'motion-v';
     const {label, name} = defineProps(['label', 'name']);
     const {password} = defineModel('password');
 
     const error = ref('');
 
-    const handleInput = (e) => {
+    const handleChange = (e) => {
+        e.target.setCustomValidity('');
         error.value = '';
     }
 
@@ -31,6 +32,11 @@
             error.value = "Password doesn't meet the requirements";
     }   
 
+    watch(() => password, () => {
+        console.log('password')
+        error.value = '';
+    },{flush: 'post'})
+
 </script>
 
 <template>
@@ -45,7 +51,7 @@
             class='input' 
             pattern="(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}"
             v-model="password"
-            @input="handleInput"
+            @change="handleChange"
             @blur="handleBlur"
             @invalid="handleInvalid"
             required/>

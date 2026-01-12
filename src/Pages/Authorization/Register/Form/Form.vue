@@ -5,7 +5,7 @@
     import EnterEmail from '~/Common/Components/EnterEmail';
     import EnterPassword from '~/Common/Components/ReEnterPassword';
     import ReEnterPassword from '~/Common/Components/ReEnterPassword';
-    import SelectImage from '~/Common/Components/SelectImage';
+    import UploadImage from '~/Common/Components/UploadImage';
     import {useToastStore} from '~/Store';
     import { VueSpinner } from 'vue3-spinners'
     import { useRouter } from 'vue-router';
@@ -26,6 +26,14 @@
         const email = e.target.elements.email.value;
         const password = e.target.elements.password.value;
         const reEnterPassword = e.target.elements.reEnterPassword.value;
+        const image = e.target.elements.image.files[0];
+
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);        
+        formData.append('password', password);
+        formData.append('image', image);
+
 
         if(password !== reEnterPassword) {
             error.value = "Password's don't match";
@@ -35,12 +43,7 @@
         try{
             const response = await fetch('http://localhost:4000/register_account', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name, email, password
-                }),
+                body: formData,
             })   
 
             if(response.status === 200){
@@ -81,7 +84,7 @@
             <EnterEmail/>
             <EnterPassword label="Enter Password:" name='password' v-model:password="password"/>
             <ReEnterPassword label="Re-enter Password:" name='reEnterPassword' v-model:password="reEnterPassword"/>
-            <SelectImage/>
+            <UploadImage/>
             <div 
                 class="error_message"
                 v-if="error"

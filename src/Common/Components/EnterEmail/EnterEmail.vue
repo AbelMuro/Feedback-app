@@ -6,8 +6,12 @@
     const error = ref('');
 
     const handleInput = (e) => {
+        e.target.setCustomValidity('');
+        const input = e.target.value;
+        email.value = input;
         error.value = '';
     }
+
 
     const handleBlur = (e) => {
         e.target.setCustomValidity('');
@@ -30,7 +34,6 @@
             error.value = "Can't be empty";
     }
     
-    
 </script>
 
 <template>
@@ -45,7 +48,7 @@
                 layout
                 type="email" 
                 class='input' 
-                v-model="email"
+                :value="email"
                 @input="handleInput"
                 @blur="handleBlur"
                 @invalid="handleInvalid"

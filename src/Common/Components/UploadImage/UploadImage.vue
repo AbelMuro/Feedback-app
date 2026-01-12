@@ -1,7 +1,21 @@
 <script setup>  
-    import {ref} from 'vue'
+    import {ref, watch} from 'vue'
 
     const image = ref();
+    const src = ref('');
+
+    const handleChange = (e) => {
+        const file = e.target.files[0];
+        image.value = file;
+    }
+
+    watch(image, (image) => {
+        if(!image) return;
+        
+        const url = URL.createObjectURL(image);
+        src.value = url;
+    }, {flush: 'post'});
+
 </script>
 
 <template>
@@ -12,12 +26,13 @@
                 id="input" 
                 type="file" 
                 class="input" 
-                accept="image/png, image/gif, image/jpeg"
-                v-on:change="image"
+                name="image"
+                accept="image/*"
+                @change="handleChange"
                 />
         </label>
-        <img v-if="image" class="image" :src="image">
     </fieldset>
+    <img v-if="image" class="image" :src="src">
 </template>
 
 <style scoped>
@@ -61,6 +76,6 @@
     .image{
         width: 50px;
         height: 50px;
-        border-radius: 100%;
+        align-self: center;
     }
 </style>

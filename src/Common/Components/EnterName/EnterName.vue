@@ -5,9 +5,14 @@
     const name = ref('');
     const error = ref('');
 
+
     const handleInput = (e) => {
+        e.target.setCustomValidity('');
+        const input = e.target.value;
+        name.value = input;
         error.value = '';
     }
+
 
     const handleBlur = (e) => {
         e.target.setCustomValidity('');
@@ -34,9 +39,9 @@
             <motion.input 
                 name="name"
                 layout
-                type="email" 
+                type="text" 
                 class='input' 
-                v-model="name"
+                :value="name"
                 @input="handleInput"
                 @blur="handleBlur"
                 @invalid="handleInvalid"

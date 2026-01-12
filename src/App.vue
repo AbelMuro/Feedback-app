@@ -4,8 +4,9 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently updating the Register component with the 
-        SelectImage component
+        this is where i left off, i am almost done with the register component and the UploadImage component as well
+
+        i just want to test it one last time, then i can finally move on to finishing the Account page functionality
     */
 
 </script>

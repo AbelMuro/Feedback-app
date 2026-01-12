@@ -6,6 +6,9 @@
     const error = ref('');
 
     const handleInput = (e) => {
+        e.target.setCustomValidity('');
+        const input = e.target.value;
+        password.value = input;
         error.value = '';
     }
 
@@ -33,7 +36,7 @@
             name="password"
             type="password" 
             class='input' 
-            v-model="password"
+            :value="password"
             @input="handleInput"
             @blur="handleBlur"
             @invalid="handleInvalid"
