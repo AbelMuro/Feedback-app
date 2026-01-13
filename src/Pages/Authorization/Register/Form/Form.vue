@@ -50,7 +50,7 @@
                 const result = await response.text();
                 console.log(result);
                 showToast(result);
-                router.push('/');
+                router.push('/login');
             }
             else{
                 const result = await response.text();

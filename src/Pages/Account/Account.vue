@@ -1,18 +1,48 @@
 <script setup>
+    import {ref, onMounted} from 'vue';
     import { RouterView } from 'vue-router';
     import AccountOptions from './AccountOptions';
+
+    const name = ref('');
+    const email = ref('');
+
+    const getAccountInfo = async () => {
+        try{
+            const response = await fetch('http://localhost:4000/get_account', {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            if(response.status === 200){
+                const result = await response.json();
+                console.log(result);
+                name.value = result.name;
+                email.value = result.email;
+            }
+
+        }
+        catch(error){
+            const message = error.message;
+            console.log(message);
+        }
+    }
+
+    onMounted(() => {
+        getAccountInfo();
+    })
+
 </script>
 
 <template>
     <section class="account">
         <div class="account_settings">
             <div class="account_user">
-                <img class="account_image"/>
+                <img class="account_image" src="http://localhost:4000/account_image"/>
                 <h2 class="account_name">
-                    John Doe
+                    {{name}}
                 </h2>
                 <p class="account_email">
-                    @johndoe
+                    {{email}}
                 </p>
             </div>
             <AccountOptions/>
