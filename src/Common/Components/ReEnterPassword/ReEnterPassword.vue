@@ -1,14 +1,21 @@
 <script setup>
     import {ref, watch} from 'vue';
     import {motion} from 'motion-v';
+    import icons from './icons';
+
     const {label, name} = defineProps(['label', 'name']);
     const {password} = defineModel('password');
 
     const error = ref('');
+    const visible = ref(false);
 
     const handleChange = (e) => {
         e.target.setCustomValidity('');
         error.value = '';
+    }
+
+    const handleVisibility = () => {
+        visible.value = !visible.value;
     }
 
     const handleBlur = (e) => {
@@ -33,7 +40,6 @@
     }   
 
     watch(() => password, () => {
-        console.log('password')
         error.value = '';
     },{flush: 'post'})
 
@@ -47,7 +53,7 @@
         <motion.input
             layout 
             :name="name"
-            type="password" 
+            :type="visible ? 'text' : 'password'" 
             class='input' 
             pattern="(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}"
             v-model="password"
@@ -55,6 +61,8 @@
             @blur="handleBlur"
             @invalid="handleInvalid"
             required/>
+        <img v-if="visible" class="visible" :src="icons['invisible']" @click="handleVisibility"/>
+        <img v-else class="visible" :src="icons['visible']" @click="handleVisibility"/>
         <motion.div 
             layout
             v-if="error"
@@ -73,6 +81,7 @@
         margin: 0px;
         padding: 0px;
         border: none;
+        position: relative;
     }
 
     .label{
@@ -112,4 +121,15 @@
         letter-spacing: var(--preset-text-3-letterspacing);
         color: var(--red-100);
     }
+
+    .visible{
+        width: 25px;
+        object-fit: contain;
+        position: absolute;
+        top: 57.4px;
+        right: 15px;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
 </style>

@@ -1,10 +1,14 @@
 <script setup>
     import { onMounted, ref , onUnmounted} from 'vue';
     import {useRouter} from 'vue-router';
+    import MobileNavigationBar from './MobileNavigationBar';
+    import {useMediaQuery} from '~/Common/Hooks';
     import icons from '~/../public/icons';
+    import localIcons from './icons';
 
     const router = useRouter();
     const loggedIn = ref(false);
+    const [mobile] = useMediaQuery('(max-width: 620px)');
 
     const handleRegister = () => {
         router.push('/register')
@@ -62,7 +66,7 @@
 </script>
 
 <template>
-    <nav class="nav">
+    <nav class="nav" v-if="!mobile">
         <img class="nav_logo" :src="icons['logo']">
         <ul class="links">
             <li class="link" @click="() => handleLink('/')">
@@ -86,10 +90,11 @@
                 Login
             </button>    
             <button v-else class="account" @click="handleAccount">
-                Account
+                <img class="account_icon" :src="localIcons['user']"/>
             </button>
         </div>
     </nav>
+    <MobileNavigationBar v-else/>
 </template>
 
 <style scoped>
@@ -163,8 +168,11 @@
         color: var(--blue-200);
     }
 
+    .account{
+        width: 60px;
+    }
+    
     .login, .account{
-        width: 100px;
         height: 40px;
         border-radius: 10px;
         border: none;
@@ -177,6 +185,11 @@
         color: var(--white-0);
         cursor: pointer;
         position: relative;
+    }
+
+    .account_icon{
+        width: 25px;
+        object-fit: contain;
     }
 
     .login::after, .account::after{

@@ -4,9 +4,7 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am almost done with the register component and the UploadImage component as well
-
-        i just want to test it one last time, then i can finally move on to finishing the Account page functionality
+        this is where i left off, i am currently working on the Mobile navigation bar for the responsiveness of the app
     */
 
 </script>
@@ -24,6 +22,11 @@
         background: var(--background-gradient);
         margin: 0px;
         padding: 0px;
+    }
+
+    input[type='password']::-ms-reveal,
+    input[type='password']::-ms-clear{
+        display: none !important
     }
 
     *{
