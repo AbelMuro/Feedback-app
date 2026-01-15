@@ -4,7 +4,9 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently working on the Mobile navigation bar for the responsiveness of the app
+        this is where i left off, i am currently working on the Mobile navigation bar
+        i am trying to implement framer-motion on the mobile nav bar, but the exit animation 
+        is not working
     */
 
 </script>
@@ -53,14 +55,15 @@
 
         --background-gradient: linear-gradient(213deg,rgba(8, 8, 8, 1) 0%, rgba(0, 11, 77, 1) 45%, rgba(0, 8, 53, 1) 66%, rgba(0, 2, 10, 1) 100%);
         --black-transparent: rgba(0, 0, 0, 0.5);
+        --black-0: black;
         --black-100: rgb(28, 28, 28);
         --white-0: white;
-        --white-100: rgb(198, 198, 198);
-        --white-200: rgb(216, 216, 216);
+        --white-100: rgb(177, 177, 177);
+        --white-200: rgb(160, 160, 160);
         --blue-0: #0000ff;       
         --blue-100:#0000e2;
         --blue-200: rgb(0, 0, 192);
-        --blue-300: rgb(1, 1, 162);
+        --blue-300: rgb(0, 0, 138);
         --blue-transparent: rgba(0, 0, 255, 0.3);
         --red-100: rgb(204, 0, 0);
 
@@ -84,19 +87,19 @@
         
         --preset-text-2-fontfamily: 'roboto';
         --preset-text-2-fontweight: 300;
-        --preset-text-2-fontsize: 1.2rem;
+        --preset-text-2-fontsize: 1.5rem;
         --preset-text-2-lineheight: 140%;
         --preset-text-2-letterspacing: 0px;
 
         --preset-text-3-fontfamily: 'roboto';
         --preset-text-3-fontweight: 300;
-        --preset-text-3-fontsize: 1rem;
+        --preset-text-3-fontsize: 1.2rem;
         --preset-text-3-lineheight: 140%;
         --preset-text-3-letterspacing: 0px;
 
         --preset-text-4-fontfamily: 'roboto';
         --preset-text-4-fontweight: 300;
-        --preset-text-4-fontsize: 0.8rem;
+        --preset-text-4-fontsize: 1rem;
         --preset-text-4-lineheight: 140%;
         --preset-text-4-letterspacing: 0px;
     }

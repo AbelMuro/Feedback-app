@@ -171,6 +171,10 @@
     .account{
         width: 60px;
     }
+
+    .login{
+        padding: 0px 15px;
+    }
     
     .login, .account{
         height: 40px;
@@ -221,5 +225,15 @@
         filter: var(--blur-button-active)
     }
 
+
+    @media(max-width: 800px){
+        .link, .register, .login{
+            font-size: 1.2rem;
+        }
+
+        .nav_logo{
+            width: 70px;
+        }
+    }
 
 </style>
