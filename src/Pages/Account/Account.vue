@@ -107,4 +107,8 @@
         justify-self: center;
     }
 
+    @media(max-width: 720px){
+        
+    }
+
 </style>

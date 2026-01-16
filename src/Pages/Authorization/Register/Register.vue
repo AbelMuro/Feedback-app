@@ -112,4 +112,30 @@
     .links > a.active{
         color: var(--blue-200);
     }
+
+    @media(max-width: 620px){
+        .container{
+            min-height: calc(100vh - 80px);
+        }
+
+        .register{
+            width: 320px;
+        }
+
+        .title{
+            font-size: 1.5rem;
+        }
+
+        .desc{
+            font-size: 1.1rem;
+        }
+
+        .links{
+            font-size: 1rem;
+        }
+
+        .links > a{
+            font-size: 1rem;
+        }
+    }
 </style>

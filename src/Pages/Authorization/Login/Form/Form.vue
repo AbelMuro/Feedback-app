@@ -103,4 +103,12 @@
     .form_submit:active{
         background-color: var(--blue-200);
     }
+
+    @media(max-width: 620px){
+        .form_submit{
+            font-size: 1.2rem;
+        }        
+    }
+
+
 </style>

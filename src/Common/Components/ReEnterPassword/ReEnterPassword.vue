@@ -41,7 +41,7 @@
 
     watch(() => password, () => {
         error.value = '';
-    },{flush: 'post'})
+    }, {flush: 'post'})
 
 </script>
 
@@ -50,19 +50,21 @@
         <motion.label layout class="label">
             {{label}}
         </motion.label>
-        <motion.input
-            layout 
-            :name="name"
-            :type="visible ? 'text' : 'password'" 
-            class='input' 
-            pattern="(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}"
-            v-model="password"
-            @change="handleChange"
-            @blur="handleBlur"
-            @invalid="handleInvalid"
-            required/>
-        <img v-if="visible" class="visible" :src="icons['invisible']" @click="handleVisibility"/>
-        <img v-else class="visible" :src="icons['visible']" @click="handleVisibility"/>
+        <motion.fieldset layout class="input_container">
+            <input
+                :name="name"
+                :type="visible ? 'text' : 'password'" 
+                class='input' 
+                pattern="(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}"
+                v-model="password"
+                @change="handleChange"
+                @blur="handleBlur"
+                @invalid="handleInvalid"
+                required/>
+            <img v-if="visible" class="visible" :src="icons['invisible']" @click="handleVisibility"/>
+            <img v-else class="visible" :src="icons['visible']" @click="handleVisibility"/>
+        </motion.fieldset>
+
         <motion.div 
             layout
             v-if="error"
@@ -91,6 +93,13 @@
         line-height: var(--preset-text-3-lineheight);
         letter-spacing: var(--preset-text-3-letterspacing);
         color: var(--white-100);
+    }
+
+    .input_container{
+        position: relative;
+        border: none;
+        padding: 0px;
+        margin: 0px;
     }
 
     .input{
@@ -126,10 +135,21 @@
         width: 25px;
         object-fit: contain;
         position: absolute;
-        top: 57.4px;
+        top: 0;
+        bottom: 0;
+        margin: auto;
         right: 15px;
-        transform: translateY(-50%);
         cursor: pointer;
+    }
+
+    @media(max-width: 620px){
+        .label{
+            font-size: 1rem;
+        }
+
+        .error_message{
+            font-size: 1rem;
+        }
     }
 
 </style>

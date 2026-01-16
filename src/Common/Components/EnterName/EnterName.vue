@@ -104,4 +104,13 @@
         color: var(--red-100);
     }
 
+    @media(max-width: 620px){
+        .label{
+            font-size: 1rem;
+        }
+        .error_message{
+            font-size: 1rem;
+        }
+    }
+
 </style>

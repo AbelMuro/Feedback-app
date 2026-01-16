@@ -45,4 +45,30 @@
     .footer_image:nth-of-type(5){
         width: 50px;
     }
+
+    @media(max-width: 620px){
+        .footer{
+            height: 100px;
+        }
+
+        .footer_image:nth-of-type(1){
+            width: 50px
+        }
+
+        .footer_image:nth-of-type(2){
+            width: 40px;
+        }
+
+        .footer_image:nth-of-type(3){
+            width: 45px;
+        }
+
+        .footer_image:nth-of-type(4){
+            width: 50px;
+        }
+
+        .footer_image:nth-of-type(5){
+            width: 40px;
+        }
+    }
 </style>

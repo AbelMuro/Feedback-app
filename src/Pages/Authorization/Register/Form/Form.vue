@@ -139,4 +139,10 @@
         letter-spacing: var(--preset-text-3-letterspacing);
     }
 
+    @media(max-width: 620px){
+        .form_submit{
+            font-size: 1.2rem;
+        }        
+    }
+
 </style>

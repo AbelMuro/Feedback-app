@@ -78,4 +78,10 @@
         height: 50px;
         align-self: center;
     }
+
+    @media(max-width: 620px){
+        .label{
+            font-size: 1.2rem;
+        }        
+    }
 </style>

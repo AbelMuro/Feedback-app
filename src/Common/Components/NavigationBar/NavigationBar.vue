@@ -23,7 +23,7 @@
     }
 
     const handleAccount = () => {
-        router.push('/account');
+        router.push('/account/settings');
     }
 
     const checkLoggedInStatus = async () => {
@@ -94,7 +94,7 @@
             </button>
         </div>
     </nav>
-    <MobileNavigationBar v-else/>
+    <MobileNavigationBar :loggedIn="loggedIn" v-else/>
 </template>
 
 <style scoped>

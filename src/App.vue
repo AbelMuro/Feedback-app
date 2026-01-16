@@ -4,9 +4,7 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently working on the Mobile navigation bar
-        i am trying to implement framer-motion on the mobile nav bar, but the exit animation 
-        is not working
+        this is where i left off, i am currently working on the responsiveness of the account page
     */
 
 </script>
@@ -87,8 +85,8 @@
         
         --preset-text-2-fontfamily: 'roboto';
         --preset-text-2-fontweight: 300;
-        --preset-text-2-fontsize: 1.5rem;
-        --preset-text-2-lineheight: 140%;
+        --preset-text-2-fontsize: 1.3rem;
+        --preset-text-2-lineheight: 110%;
         --preset-text-2-letterspacing: 0px;
 
         --preset-text-3-fontfamily: 'roboto';

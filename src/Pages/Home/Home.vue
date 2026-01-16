@@ -108,4 +108,24 @@
     .submit:active::after{
         filter: var(--blur-button-active);
     }
+
+    @media(max-width: 620px){
+        .header{
+            height: calc(100vh - 80px - 100px);
+        }
+
+        .header_content{
+            gap: 5px;
+        }
+
+        .header_title{
+            font-size: 3.5rem;
+        }
+
+        .header_desc{
+            width: 80%;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+    }
 </style>
