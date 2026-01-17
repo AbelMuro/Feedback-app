@@ -4,7 +4,8 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently working on the responsiveness of the account page
+        this is where i left off, i am STILL currently working on the responsiveness of the account page
+
     */
 
 </script>
@@ -22,6 +23,7 @@
         background: var(--background-gradient);
         margin: 0px;
         padding: 0px;
+        overflow: hidden;
     }
 
     input[type='password']::-ms-reveal,
