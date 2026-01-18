@@ -1,38 +1,33 @@
 <script setup>
     import {watch} from 'vue';
     import {motion} from 'motion-v';
-    import {useRouter} from 'vue-router';
-    import {useDialogStore} from '~/Store';
+    import {useRouter, useRoute} from 'vue-router';
     import {ref} from 'vue';
     import LogOut from './LogOut';
 
     const router = useRouter();
+    const route = useRoute();
     const option = ref('settings');
-    const store = useDialogStore();
-    const {showDialog} = store;
 
-    const handleOption = (opt) => {
-        option.value = opt;
+    const handleOption = (link) => {
+        router.push(link)
     }
 
 
-    watch(option, (option) => {
-        router.push(`/account/${option}`);
-    }, {
-        immediate: true,
-        flush: 'post'
-    })
+    watch(() => route.path, (path) => {
+        option.value = path;
+    }, {immediate: true, flush: 'post'})
 </script>
 
 <template>
     <ul class="account_options">
-        <li class="account_option" @click="() => handleOption('settings')">
+        <li class="account_option" @click="() => handleOption('/account/settings')">
             Settings
-            <motion.div layoutId="line" class="line" v-if="option === 'settings'"/>
+            <motion.div layoutId="line" class="line" v-if="option === '/account/settings'"/>
         </li>
-        <li class="account_option" @click="() => handleOption('feedback')">
+        <li class="account_option" @click="() => handleOption('/account/feedback')">
             Feedback
-            <motion.div layoutId="line" class="line" v-if="option === 'feedback'"/>
+            <motion.div layoutId="line" class="line" v-if="option === '/account/feedback'"/>
         </li>
         <LogOut/>
     </ul>

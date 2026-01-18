@@ -80,6 +80,7 @@
         row-gap: 10px;
         align-content: start;
         justify-self: center;
+        transition: all 0.2s linear, height 0s;
     }
 
     .settings_header{
@@ -155,5 +156,32 @@
 
     .submit:active{
         background-color: var(--blue-200);
+    }
+
+    @media(max-width: 720px){
+        .settings{
+            height: calc(100vh - 100px - 80px);
+        }
+    }
+
+
+    @media(max-width: 620px){
+        .settings{
+            width: 100%;
+            height: calc(100vh - 80px - 80px);
+        }
+
+        .settings_title{
+            font-size: 1.5rem;
+        }
+
+        .settings_desc{
+            font-size: 1.1rem;
+        }
+
+        .submit{
+            font-size: 1rem;
+            height: 50px;
+        }
     }
 </style>

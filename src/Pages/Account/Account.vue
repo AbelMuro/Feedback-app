@@ -25,8 +25,10 @@
         grid-template-columns: auto 1fr;
     }
 
-    @media(max-width: 720px){
-        
+    @media(max-width: 620px){
+        .account{
+            grid-template-columns: 1fr;
+        }
     }
 
 </style>

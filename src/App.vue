@@ -4,7 +4,10 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am STILL currently working on the responsiveness of the account page
+        this is where i left off, i am finished with the responsiveness of the app
+
+        now i need to create a thread that lets users view their feedback and the responses
+        from an admin
 
     */
 
@@ -23,7 +26,6 @@
         background: var(--background-gradient);
         margin: 0px;
         padding: 0px;
-        overflow: hidden;
     }
 
     input[type='password']::-ms-reveal,

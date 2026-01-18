@@ -1,5 +1,11 @@
 <script setup>
+    import {useRouter} from 'vue-router';
 
+    const router = useRouter();
+
+    const handleLink = (id) => {
+        router.push(`/feedback/${id}`);
+    }
 </script>
 
 <template>
@@ -16,7 +22,7 @@
         <p class="feedback_desc">
             This is where the feedback description will start
         </p>
-        <button class="feedback_thread">
+        <button class="feedback_button" @click="() => handleLink('id')">
             View Thread
         </button>
     </article>
@@ -83,7 +89,7 @@
         margin: 0px;
     }
 
-    .feedback_thread{
+    .feedback_button{
         grid-column: 1/3;
         grid-row: 3/4;
         height: 60px;
@@ -98,11 +104,43 @@
         cursor: pointer;
     }
 
-    .feedback_thread:hover{
+    .feedback_button:hover{
         background-color: var(--blue-100);
     }
 
-    .feedback_thread:active{
+    .feedback_button:active{
         background-color: var(--blue-200);
+    }
+
+    @media(max-width: 620px){
+        .feedback_label{
+            grid-column: 1/3;
+            font-size: 1.2rem;
+        }
+
+        .feedback_label:nth-of-type(1){
+            grid-row: 1/2;
+        }
+
+        .feedback_label:nth-of-type(3){
+            grid-row: 3/4;
+        }
+
+        .feedback_title{
+            font-size: 1.2rem;
+            grid-column: 1/3;
+            grid-row: 2/3;
+        }
+
+        .feedback_desc{
+            font-size: 1.2rem;
+            grid-column: 1/3;
+            grid-row: 4/5;
+        }
+
+        .feedback_button{
+            font-size: 1.2rem;
+            grid-row: 5/6;
+        }
     }
 </style>

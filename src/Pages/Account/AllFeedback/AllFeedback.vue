@@ -15,11 +15,13 @@
 <style scoped>
     .all_feedback{
         width: 500px;
-        height: 100%;
+        min-height: 100%;
         display: flex;
         flex-direction: column;
         gap: 15px;
+        padding: 25px;
         margin: auto;
+        transition: all 0.2s linear, min-height 0s;
     }
     
     .all_feedback_title{
@@ -30,5 +32,22 @@
         color: var(--white-0);
         margin: 0px;
         align-self: center;
+    }
+
+    @media(max-width: 720px){
+        .all_feedback{
+            min-height: calc(100vh - 100px - 80px);
+        }
+    }
+
+    @media(max-width: 620px){
+        .all_feedback{
+            width: 100%;
+            min-height: calc(100vh - 80px - 80px);
+        }
+
+        .all_feedback_title{
+            font-size: 1.5rem;
+        }
     }
 </style>
