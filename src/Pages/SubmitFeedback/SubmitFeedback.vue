@@ -1,6 +1,42 @@
 <script setup>
+    import {useRouter} from 'vue-router';
+    import {onMounted} from 'vue';
     import {motion, LayoutGroup} from 'motion-v';
     import Form from './Form';
+    import {useToastStore} from '~/Store';
+
+    const router = useRouter();
+    const store = useToastStore();
+    const {showToast} = store;
+
+    const checkLoginStatus = async () => {
+        try{
+            const response = await fetch('http://localhost:4000/authorization', {
+                method: 'GET',
+                credentials: 'include'
+            });
+
+            if(response.status === 200){
+                const result = await response.text();
+                console.log(result);
+            }
+            else{
+                const result = await response.text();
+                console.log(result);
+                router.push('/login');
+                showToast('You must be logged in to submit a feedback');
+            }
+
+        }
+        catch(error){
+            const message = error.message;
+            console.log(message);
+        }
+    }
+
+    onMounted(() => {
+        checkLoginStatus();
+    })
 </script>
 
 <template>

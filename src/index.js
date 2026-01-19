@@ -11,6 +11,7 @@ import Account from './Pages/Account';
 import Settings from './Pages/Account/Settings';
 import AllFeedback from './Pages/Account/AllFeedback';
 import Home from './Pages/Home';
+import FeedbackThread from './Pages/FeedbackThread';
 
 const router = createRouter({
     history: createWebHistory(),                        //this will save the URL endpoint of every route, and display it in the URL
@@ -25,6 +26,7 @@ const router = createRouter({
         {path: '/login', component: Login},        
         {path: '/register', component: Register},
         {path: '/feedback', component: SubmitFeedback},
+        {path: '/feedback_thread/:id', component: FeedbackThread},
         {path: '/forgot_password', component: ForgotPassword},
         {path: '/reset_password/:token', component: ResetPassword},
     ],

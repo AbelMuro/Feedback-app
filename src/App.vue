@@ -4,11 +4,7 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am finished with the responsiveness of the app
-
-        now i need to create a thread that lets users view their feedback and the responses
-        from an admin
-
+        this is where i left off, i need to finish creating the /create_response route on the back end
     */
 
 </script>

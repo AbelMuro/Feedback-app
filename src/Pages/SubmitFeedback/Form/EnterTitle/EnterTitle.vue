@@ -2,17 +2,14 @@
     import {ref, watch} from 'vue';
     import {motion, AnimatePresence} from 'motion-v';
 
-    const email = ref('');
+    const title = ref('');
     const error = ref('');
 
     const handleBlur = (e) => {
         const valueMissing = e.target.validity.valueMissing;
-        const invalid = e.target.validity.typeMismatch;
 
         if(valueMissing)
             error.value = "Can't be empty"
-        else if(invalid)
-            error.value = "Invalid email";   
     }
 
     const handleInput = () => {
@@ -23,16 +20,16 @@
 
 <template>
     <AnimatePresence>
-        <motion.fieldset layout class="email_fieldset">
-            <motion.label layout class="email_label"> 
-                Enter Email:
+        <motion.fieldset layout class="title_fieldset">
+            <motion.label layout class="title_label"> 
+                Enter Title:
             </motion.label>
             <motion.input 
                 layout
-                class="email_input" 
-                type="email" 
-                name="email" 
-                v-model="email"
+                class="title_input" 
+                type="text" 
+                name="title" 
+                v-model="title"
                 @blur="handleBlur"
                 @input="handleInput"
                 required
@@ -53,7 +50,7 @@
 </template>
 
 <style scoped>
-    .email_fieldset{
+    .title_fieldset{
         display: flex;
         flex-direction: column;
         gap: 5px;
@@ -62,7 +59,7 @@
         margin: 0px;
     }
 
-    .email_label{
+    .title_label{
         font-family: 'roboto';
         font-size: 1rem;
         line-height: 130%;
@@ -70,7 +67,7 @@
         color: var(--white-200)
     }
 
-    .email_input{
+    .title_input{
         width: 100%;
         height: 60px;
         border-radius: 5px;
@@ -82,7 +79,7 @@
         padding: 0px 20px;
     }
 
-    .email_input:focus{
+    .title_input:focus{
         outline: none;
     }
 

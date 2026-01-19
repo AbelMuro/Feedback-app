@@ -1,34 +1,43 @@
 <script setup>
     import {useRouter} from 'vue-router';
+    const {title, feedback, id} = defineProps(['title', 'feedback', 'id']);
 
     const router = useRouter();
 
-    const handleLink = (id) => {
-        router.push(`/feedback/${id}`);
+    const handleLink = () => {
+        router.push(`/feedback_thread/${id}`);
     }
+
 </script>
 
 <template>
-    <article class="feedback">
-        <h2 class="feedback_label">
-            Title: 
-        </h2>
-        <p class="feedback_title">
-            Your feature needs to be fixed
-        </p>
-        <h2 class="feedback_label">
-            Feedback: 
-        </h2>
-        <p class="feedback_desc">
-            This is where the feedback description will start
-        </p>
-        <button class="feedback_button" @click="() => handleLink('id')">
-            View Thread
-        </button>
-    </article>
+        <article class="feedback">
+            <h2 class="feedback_label">
+                Title: 
+            </h2>
+            <p class="feedback_title">
+                {{title}}
+            </p>
+            <h2 class="feedback_label">
+                Feedback: 
+            </h2>
+            <p class="feedback_desc">
+                {{feedback}}
+            </p>
+            <button class="feedback_button" @click="handleLink">
+                View Thread
+            </button>
+        </article>
 </template>
 
 <style scoped>
+    .all_feedback{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
     .feedback{
         width: 100%;
         height: auto;

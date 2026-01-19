@@ -1,6 +1,35 @@
 <script setup>
+    import {ref, onMounted} from 'vue'
     import Feedback from './Feedback';
 
+    const allFeedback = ref([]);
+
+    const getFeedback = async () => {
+        try{
+            const response = await fetch('http://localhost:4000/get_all_feedback', {
+                method: 'GET',
+                credentials: 'include',
+            });
+
+            if(response.status === 200){
+                const result = await response.json();
+                console.log(result);
+                allFeedback.value = result;
+            }
+            else{
+                const result = await response.text();
+                console.log(result);
+            }
+        }
+        catch(error){
+            const message = error.message;
+            console.log(message);
+        }
+    }
+
+    onMounted(() => {
+        getFeedback();
+    })
 </script>
 
 <template>
@@ -8,7 +37,13 @@
         <h1 class="all_feedback_title">
             My Feedback
         </h1>
-        <Feedback/>
+        <Feedback 
+            v-for="(feedback) in allFeedback" 
+            :key="feedback.id" 
+            :id="feedback.id"
+            :title="feedback.title"
+            :feedback="feedback.feedback"
+            />
     </section>
 </template>
 
