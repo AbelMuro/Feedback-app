@@ -1,13 +1,42 @@
 <script setup>
+    import {ref} from 'vue';
+    import {VueSpinner} from 'vue3-spinners';
+    import {useRoute} from 'vue-router';
+
+    const input = ref('');
+    const error = ref('');
+    const loading = ref(false);
+    const route = useRoute();
+    const threadId = route.params.id;
+
+    const handleInput = () => {
+        error.value = '';
+    }
+
+    const handleBlur = (e) => {
+        const isEmpty = e.target.validity.valueMissing;
+
+        if(isEmpty)
+            error.value = "Can't be empty";
+    }
+
+    const handleInvalid = () => {
+        error.value = "Can't be empty";
+    }
 
     const handleSubmit = async (e) => {
         try{
+            loading.value = true;
             e.preventDefault();
             const response = await fetch('http://localhost:4000/create_response', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'
                 },
+                body: JSON.stringify({
+                    response: input.value,
+                    threadId
+                }),
                 credentials: 'include'
             });
 
@@ -25,6 +54,9 @@
             const message = error.message;
             console.log(message);
         }
+        finally{
+            loading.value = false;
+        }
     }
 
 </script>
@@ -33,10 +65,18 @@
     <form class="form" @submit="handleSubmit">
         <textarea
             class="textarea"
+            v-model="input"
+            @input="handleInput"
+            @blur="handleBlur"
+            @invalid="handleInvalid"
             placeholder="Enter reply here..."
+            required
         />
-        <button class="submit">
+        <button class="submit" v-if="!loading">
             Submit Response
+        </button>
+        <button class="submit" v-else>
+            <VueSpinner size="25" color="white"/>
         </button>
     </form>
 </template>

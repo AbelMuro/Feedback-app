@@ -4,7 +4,11 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i need to finish creating the /create_response route on the back end
+        this is where i left off, i am currently working on the DisplayAllResponses component on 
+        the front end. i have successfully made a fetch request to the back end retrieving all
+        the responses from a specific thread.
+
+        now i have to format the responses
     */
 
 </script>

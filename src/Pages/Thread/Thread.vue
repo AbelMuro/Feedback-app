@@ -2,14 +2,15 @@
     import {onMounted, ref} from 'vue';
     import {useRoute} from 'vue-router';
     import Respond from './Respond';
+    import DisplayAllResponses from './DisplayAllResponses';
 
     const route = useRoute();
-    const id = route.params.id;
+    const threadId = route.params.id;
     const feedback = ref({});
 
     const getFeedbackInfo = async () => {
         try{
-            const response = await fetch(`http://localhost:4000/get_feedback/${id}`, {
+            const response = await fetch(`http://localhost:4000/get_thread/${threadId}`, {
                 method: 'GET',
             });
 
@@ -45,6 +46,7 @@
                 {{feedback.feedback}}
             </h2>
         </header>
+        <DisplayAllResponses/>
         <Respond/>
     </section>
 </template>

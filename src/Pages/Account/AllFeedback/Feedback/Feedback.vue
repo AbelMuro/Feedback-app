@@ -5,7 +5,7 @@
     const router = useRouter();
 
     const handleLink = () => {
-        router.push(`/feedback_thread/${id}`);
+        router.push(`/thread/${id}`);
     }
 
 </script>
