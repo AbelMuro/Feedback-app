@@ -1,5 +1,6 @@
 <script setup>
     import {ref} from 'vue';
+    import {motion, LayoutGroup} from 'motion-v';
     import {VueSpinner} from 'vue3-spinners';
     import {useRoute} from 'vue-router';
 
@@ -26,6 +27,7 @@
 
     const handleSubmit = async (e) => {
         try{
+            const textAreaInput = e.target.elements.response.value;
             loading.value = true;
             e.preventDefault();
             const response = await fetch('http://localhost:4000/create_response', {
@@ -34,15 +36,18 @@
                     'Content-Type' : 'application/json'
                 },
                 body: JSON.stringify({
-                    response: input.value,
+                    response: textAreaInput,
                     threadId
                 }),
                 credentials: 'include'
             });
 
             if(response.status === 200){
-                const result = await response.json();
+                const result = await response.text();
                 console.log(result);
+                const event = new CustomEvent('new_response');
+                document.dispatchEvent(event);
+                input.value = '';
             }
             else{
                 const result = await response.text();
@@ -62,23 +67,35 @@
 </script>
 
 <template>
-    <form class="form" @submit="handleSubmit">
-        <textarea
-            class="textarea"
-            v-model="input"
-            @input="handleInput"
-            @blur="handleBlur"
-            @invalid="handleInvalid"
-            placeholder="Enter reply here..."
-            required
-        />
-        <button class="submit" v-if="!loading">
-            Submit Response
-        </button>
-        <button class="submit" v-else>
-            <VueSpinner size="25" color="white"/>
-        </button>
-    </form>
+    <LayoutGroup>
+        <motion.form layout class="form" @submit="handleSubmit">
+            <motion.textarea
+                layout
+                name="response"
+                class="textarea"
+                v-model="input"
+                @input="handleInput"
+                @blur="handleBlur"
+                @invalid="handleInvalid"
+                placeholder="Enter reply here..."
+                required
+            />
+            <motion.div 
+                layout 
+                :initial="{scale: 0}"
+                :animate="{scale: 1}"
+                class="error_message" 
+                v-if="error">
+                {{error}}
+            </motion.div>
+            <motion.button layout class="submit" v-if="!loading">
+                Submit Response
+            </motion.button>
+            <motion.button layout class="submit" v-else>
+                <VueSpinner size="25" color="white"/>
+            </motion.button>
+        </motion.form>
+    </LayoutGroup>
 </template>
 
 <style scoped>
@@ -128,5 +145,14 @@
 
     .submit:active{
         background-color: var(--blue-200);
+    }
+
+    .error_message{
+        font-family: var(--preset-text-3-fontfamily);
+        font-size: var(--preset-text-3-fontsize);
+        font-weight: var(--preset-text-3-fontweight);
+        line-height: var(--preset-text-3-lineheight);
+        letter-spacing: var(--preset-text-3-letterspacing);
+        color: var(--red-100);
     }
 </style>
