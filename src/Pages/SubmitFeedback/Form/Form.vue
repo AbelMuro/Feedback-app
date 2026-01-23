@@ -1,10 +1,15 @@
 <script setup>
+    import {ref} from 'vue';
     import EnterTitle from './EnterTitle';
     import EnterFeedback from './EnterFeedback';
     import {useToastStore} from '~/Store';
     import {motion} from 'motion-v';
+    import {VueSpinner} from 'vue3-spinners';
+    import {useRouter} from 'vue-router';
 
     const {showToast} = useToastStore();
+    const loading = ref(false);
+    const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -13,7 +18,7 @@
             const title = e.target.elements.title.value;
             const feedback = e.target.elements.feedback.value;
 
-            const response = await fetch('http://localhost:4000/create_feedback', {
+            const response = await fetch('http://localhost:4000/create_thread', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -26,6 +31,7 @@
                 const result = await response.text();
                 console.log(result);
                 showToast(result);
+                router.push('/account/feedback')
             }
             else{
                 const result = await response.text();
@@ -48,8 +54,11 @@
         @submit="handleSubmit">
             <EnterTitle/>
             <EnterFeedback/>
-            <motion.button layout class="submit">
+            <motion.button layout class="submit" v-if="!loading">
                 Submit
+            </motion.button>
+            <motion.button layout class="submit" v-else>
+                <VueSpinner size="25" color="white"/>
             </motion.button>
     </motion.form>
 </template>

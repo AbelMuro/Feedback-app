@@ -27,10 +27,10 @@
 
     const handleSubmit = async (e) => {
         try{
-            const textAreaInput = e.target.elements.response.value;
+            const textAreaInput = e.target.elements.message.value;
             loading.value = true;
             e.preventDefault();
-            const response = await fetch('http://localhost:4000/create_response', {
+            const response = await fetch('http://localhost:4000/create_message', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'
@@ -71,9 +71,10 @@
         <motion.form layout class="form" @submit="handleSubmit">
             <motion.textarea
                 layout
-                name="response"
+                name="message"
                 class="textarea"
-                v-model="input"
+                :value="input"
+                @change="(e) => input = e.target.value"
                 @input="handleInput"
                 @blur="handleBlur"
                 @invalid="handleInvalid"

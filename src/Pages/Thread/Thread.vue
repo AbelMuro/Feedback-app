@@ -1,8 +1,8 @@
 <script setup>
     import {onMounted, ref} from 'vue';
     import {useRoute} from 'vue-router';
-    import Respond from './Respond';
-    import DisplayAllResponses from './DisplayAllResponses';
+    import SendMessage from './SendMessage';
+    import DisplayAllMessages from './DisplayAllMessages';
 
     const route = useRoute();
     const threadId = route.params.id;
@@ -46,8 +46,8 @@
                 {{feedback.feedback}}
             </h2>
         </header>
-        <DisplayAllResponses/>
-        <Respond/>
+        <DisplayAllMessages/>
+        <SendMessage/>
     </section>
 </template>
 
