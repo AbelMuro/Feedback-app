@@ -3,7 +3,10 @@
     import {useRoute} from 'vue-router';
     import SendMessage from './SendMessage';
     import DisplayAllMessages from './DisplayAllMessages';
+    import {useToastStore} from '~/Store';
 
+    const store = useToastStore();
+    const {showToast} = store;
     const route = useRoute();
     const threadId = route.params.id;
     const feedback = ref({});
@@ -16,17 +19,18 @@
 
             if(response.status === 200){
                 const result = await response.json();
-                console.log(result[0]);
                 feedback.value = result[0];
             }
             else{
                 const result = await response.text();
                 console.log(result);
+                showToast(result);
             }
         }
         catch(error){
             const message = error.message;
             console.log(message);
+            showToast(message);
         }
     }
 

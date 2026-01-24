@@ -5,7 +5,10 @@
     import {useMediaQuery} from '~/Common/Hooks';
     import icons from '~/../public/icons';
     import localIcons from './icons';
+    import {useToastStore} from '~/Store';
 
+    const store = useToastStore();
+    const {showToast} = store;
     const router = useRouter();
     const loggedIn = ref(false);
     const [mobile] = useMediaQuery('(max-width: 620px)');
@@ -23,7 +26,7 @@
     }
 
     const handleAccount = () => {
-        router.push('/account/settings');
+        router.push('/account/details');
     }
 
     const checkLoggedInStatus = async () => {
@@ -50,6 +53,7 @@
         catch(error){
             const message = error.message;
             console.log(message);
+            showToast(message);
             loggedIn.value = false;
         }
     }

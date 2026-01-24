@@ -1,11 +1,7 @@
 <script setup>
     import {motion, AnimatePresence} from 'motion-v';
-    import {watch} from 'vue';
     const {open, message, handleOpen, handleSubmit} = defineProps(['open', 'message', 'handleOpen', 'handleSubmit'])
     
-    watch(() => open, (open) => {
-        console.log(open);
-    }, {flush: 'post'})
 
 </script>
 

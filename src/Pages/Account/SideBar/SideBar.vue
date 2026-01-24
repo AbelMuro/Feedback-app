@@ -1,7 +1,10 @@
 <script setup>
     import {ref, onMounted} from 'vue';
     import AccountOptions from './AccountOptions';
+    import {useToastStore} from '~/Store';
 
+    const store = useToastStore();
+    const {showToast} = store;
     const name = ref('');
     const email = ref('');
 
@@ -24,6 +27,7 @@
         catch(error){
             const message = error.message;
             console.log(message);
+            showToast(message);
         }
     }
 

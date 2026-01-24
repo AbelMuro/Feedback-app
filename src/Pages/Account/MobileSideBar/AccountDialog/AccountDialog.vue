@@ -2,7 +2,10 @@
     import icons from './icons';
     import {ref, onMounted} from 'vue';
     import { AnimatePresence, motion } from 'motion-v';
+    import {useToastStore} from '~/Store';
 
+    const store = useToastStore();
+    const {showToast} = store;
     const open = ref(false);
     const name = ref('');
     const email = ref('');
@@ -28,6 +31,7 @@
         catch(error){
             const message = error.message;
             console.log(message);
+            showToast(message);
         }
     }
 

@@ -25,7 +25,6 @@
 
             if(response.status === 200){
                 const result = await response.text();
-                console.log(result);
                 showToast(result);
                 const event = new CustomEvent('auth_change');
                 document.dispatchEvent(event);

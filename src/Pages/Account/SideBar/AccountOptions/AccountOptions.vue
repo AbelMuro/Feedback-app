@@ -21,9 +21,9 @@
 
 <template>
     <ul class="account_options">
-        <li class="account_option" @click="() => handleOption('/account/settings')">
-            Settings
-            <motion.div layoutId="line" class="line" v-if="option === '/account/settings'"/>
+        <li class="account_option" @click="() => handleOption('/account/details')">
+            Details
+            <motion.div layoutId="line" class="line" v-if="option === '/account/details'"/>
         </li>
         <li class="account_option" @click="() => handleOption('/account/feedback')">
             Feedback

@@ -31,6 +31,7 @@
         catch(error){
             const message = error.message;
             console.log(message);
+            showToast(message);
         }
     }
 

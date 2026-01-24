@@ -4,7 +4,10 @@
     import icons from './icons';
     import AccountDialog from './AccountDialog';
     import {useRouter} from 'vue-router';
+    import {useToastStore} from '~/Store';
 
+    const store = useToastStore();
+    const {showToast} = store;
     const router = useRouter();
     const name = ref('');
     const email = ref('');
@@ -31,6 +34,7 @@
         catch(error){
             const message = error.message;
             console.log(message);
+            showToast(message);
         }
     }
 
@@ -43,7 +47,7 @@
 <template>
     <footer class="footer">
         <AccountDialog/>
-        <button class="footer_link" @click="() => handleLink('/account/settings')">
+        <button class="footer_link" @click="() => handleLink('/account/details')">
             <img :src="icons['settings']">
         </button>
         <button class="footer_link" @click="() => handleLink('/account/feedback')">

@@ -4,8 +4,7 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently on the back end trying to find a way to use
-        mySqlevents to create a real-time communication between users in a thread
+        this is where i left off, i am currently on the back end creating the /update_account route
     */
 
 </script>

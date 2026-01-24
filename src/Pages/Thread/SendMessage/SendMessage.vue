@@ -4,7 +4,7 @@
     import {VueSpinner} from 'vue3-spinners';
     import {useRoute} from 'vue-router';
 
-    const input = ref('');
+    const message = ref('');
     const error = ref('');
     const loading = ref(false);
     const route = useRoute();
@@ -27,7 +27,7 @@
 
     const handleSubmit = async (e) => {
         try{
-            const textAreaInput = e.target.elements.message.value;
+            const textAreaMessage = e.target.elements.message.value;
             loading.value = true;
             e.preventDefault();
             const response = await fetch('http://localhost:4000/create_message', {
@@ -36,7 +36,7 @@
                     'Content-Type' : 'application/json'
                 },
                 body: JSON.stringify({
-                    response: textAreaInput,
+                    message: textAreaMessage,
                     threadId
                 }),
                 credentials: 'include'
@@ -47,7 +47,7 @@
                 console.log(result);
                 const event = new CustomEvent('new_response');
                 document.dispatchEvent(event);
-                input.value = '';
+                message.value = '';
             }
             else{
                 const result = await response.text();
@@ -73,8 +73,8 @@
                 layout
                 name="message"
                 class="textarea"
-                :value="input"
-                @change="(e) => input = e.target.value"
+                :value="message"
+                @change="(e) => message = e.target.value"
                 @input="handleInput"
                 @blur="handleBlur"
                 @invalid="handleInvalid"

@@ -1,10 +1,14 @@
 <script setup>
-    import {ref, onMounted, onBeforeMount} from 'vue';
+    import {ref, onMounted, onBeforeUnmount} from 'vue';
     import { useRoute } from 'vue-router';
+    import {useToastStore} from '~/Store';
 
+    const store = useToastStore();
+    const {showToast} = store;
     const allResponses = ref([]);
     const route = useRoute();
     const threadId = route.params.id;
+    let interval = null;
 
     const formatDate = (timestamp) => {
         const date = new Date(Number(timestamp));
@@ -17,6 +21,7 @@
 
     const getAllResponses = async () => {
         try{
+            console.log('Polling database for updates');
             const response = await fetch(`http://localhost:4000/get_all_thread_messages/${threadId}`, {
                 method: 'GET'
             });
@@ -34,20 +39,28 @@
             else{
                 const result = await response.text();
                 console.log(result);
+                showToast(result);
+                clearInterval(interval);
             }
         }
         catch(error){
             const message = error.message;
             console.log(message);
+            showToast(message);
+            clearInterval(interval);
         }
     }
 
     onMounted(() => {
         getAllResponses();
-        document.addEventListener('new_response', getAllResponses);
+        document.addEventListener('new_response', getAllResponses)
+        interval = setInterval(() => {
+            getAllResponses();
+        }, 5000)
     })
 
-    onBeforeMount(() => {
+    onBeforeUnmount(() => {
+        clearInterval(interval);
         document.removeEventListener('new_response', getAllResponses);
     })
 

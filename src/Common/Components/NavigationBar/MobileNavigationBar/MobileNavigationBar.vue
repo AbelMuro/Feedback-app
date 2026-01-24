@@ -31,7 +31,7 @@
     }
 
     const handleAccount = () => {
-        router.push('/account/settings');
+        router.push('/account/details');
         handleOpen();
     }
 </script>

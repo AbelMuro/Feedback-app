@@ -1,9 +1,13 @@
 <script setup>
     import {motion, LayoutGroup} from 'motion-v';
     import EnterEmail from '~/Common/Components/EnterEmail';
-    import EnterPassword from '~/Common/Components/EnterPassword';
+    import EnterName from '~/Common/Components/EnterName';
+    import UploadImage from '~/Common/Components/UploadImage';
     import {useRouter} from 'vue-router';
+    import {useToastStore} from '~/Store';
 
+    const store = useToastStore();
+    const {showToast} = store;
     const router = useRouter();
 
     const handleSubmit = async (e) => {
@@ -11,36 +15,43 @@
         try{
             e.preventDefault();
             const email = e.target.elements.email.value;
-            const password = e.target.elements.password.value;
+            const name = e.target.elements.name.value;
+            const image = e.target.elements.image.file?.[0];
+            const form = new FormData();
+            form.append('email', email);
+            form.append('name', name);
+            form.append('image', image);
 
             const response = await fetch('http://localhost:4000/update_account', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    email, password
-                }),
+                body: form,
                 credentials: 'include',
             });
 
             if(response.status === 200){
                 const result = await response.text();
                 console.log(result);
+                showToast(result);
             }
             else if (response.status === 401){
                 const result = await response.text();
                 console.log(result);
+                showToast(result);
                 router.push('/login');
             }
             else{
                 const result = await response.text();
                 console.log(result);
+                showToast(result);
             }
         }
         catch(error){
             const message = error.message;
             console.log(message);
+            showToast(message);
         }
     }
 </script>
@@ -53,14 +64,17 @@
                     Account Details
                 </label>
                 <label layout class="settings_desc">
-                    Update your email or password
+                    Update your email, name or photo.
                 </label>
             </motion.fieldset>
             <motion.fieldset layout class="settings_email">
                 <EnterEmail/>
             </motion.fieldset>
-            <motion.fieldset layout class="settings_password">
-                <EnterPassword/>
+            <motion.fieldset layout class="settings_name">
+                <EnterName/>
+            </motion.fieldset>
+            <motion.fieldset layout class="settings_image">
+                <UploadImage />
             </motion.fieldset>
             <motion.button layout class="submit">
                 Update Account
@@ -126,7 +140,7 @@
         grid-row: 2/3;
     }
 
-    .settings_password{
+    .settings_name{
         width: 100%;
         border: none;
         margin: 0px;
@@ -134,9 +148,18 @@
         grid-row: 3/4;
     }
 
-    .submit{
+    .settings_image{
+        width: 100%;
+        border: none;
+        margin: 0px;
+        padding: 0px;
         grid-row: 4/5;
+    }
+
+    .submit{
+        grid-row: 5/6;
         margin: auto;
+        width: 100%;
         height: 60px;
         padding: 0px 25px;
         border: none;

@@ -8,7 +8,7 @@ import ForgotPassword from './Pages/Authorization/ForgotPassword';
 import ResetPassword from './Pages/Authorization/ResetPassword';
 import SubmitFeedback from './Pages/SubmitFeedback';
 import Account from './Pages/Account';
-import Settings from './Pages/Account/Settings';
+import Details from './Pages/Account/Details';
 import AllFeedback from './Pages/Account/AllFeedback';
 import Home from './Pages/Home';
 import Thread from './Pages/Thread';
@@ -19,7 +19,7 @@ const router = createRouter({
         {path: '/', component: Home},
         {path: '/account', component: Account,
             children: [
-                {path: 'settings', component: Settings},
+                {path: 'details', component: Details},
                 {path: 'feedback', component: AllFeedback}
             ]
         },

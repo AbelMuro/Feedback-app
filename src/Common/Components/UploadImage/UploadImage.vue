@@ -20,6 +20,7 @@
 
 <template>
     <fieldset class="fieldset">
+        <img v-if="image" class="image" :src="src">
         <label class="label" for='input'>
             Upload Photo
             <input 
@@ -32,7 +33,6 @@
                 />
         </label>
     </fieldset>
-    <img v-if="image" class="image" :src="src">
 </template>
 
 <style scoped>
@@ -41,6 +41,11 @@
         border: none;
         margin: 0px;
         padding: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
     }
 
     .input{
@@ -75,7 +80,8 @@
 
     .image{
         width: 50px;
-        height: 50px;
+        border-radius: 100%;
+        object-fit: contain;
         align-self: center;
     }
 

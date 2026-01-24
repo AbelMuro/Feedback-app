@@ -1,7 +1,10 @@
 <script setup>
     import {ref, onMounted} from 'vue'
     import Feedback from './Feedback';
+    import {useToastStore} from '~/Store';
 
+    const store = useToastStore();
+    const {showToast} = store;
     const allFeedback = ref([]);
 
     const getFeedback = async () => {
@@ -19,11 +22,13 @@
             else{
                 const result = await response.text();
                 console.log(result);
+                showToast(result);
             }
         }
         catch(error){
             const message = error.message;
             console.log(message);
+            showToast(message);
         }
     }
 
