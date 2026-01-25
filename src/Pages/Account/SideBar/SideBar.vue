@@ -1,12 +1,14 @@
 <script setup>
-    import {ref, onMounted} from 'vue';
+    import {onMounted, onBeforeUnmount} from 'vue';
     import AccountOptions from './AccountOptions';
-    import {useToastStore} from '~/Store';
+    import {storeToRefs} from 'pinia';
+    import {useToastStore, useAccountStore} from '~/Store';
 
-    const store = useToastStore();
-    const {showToast} = store;
-    const name = ref('');
-    const email = ref('');
+    const toastStore = useToastStore();
+    const accountStore = useAccountStore();
+    const {showToast} = toastStore;
+    const {updateAccount, clearAccount} = accountStore;
+    const {email, name} = storeToRefs(accountStore);
 
 
     const getAccountInfo = async () => {
@@ -19,8 +21,7 @@
             if(response.status === 200){
                 const result = await response.json();
                 console.log(result);
-                name.value = result.name;
-                email.value = result.email;
+                updateAccount(result.email, result.name);
             }
 
         }
@@ -33,13 +34,18 @@
 
     onMounted(() => {
         getAccountInfo();
+        document.addEventListener('update_account', getAccountInfo);
+    });
+
+    onBeforeUnmount(() => {
+        document.removeEventListener('update_account', getAccountInfo);
     });
 </script>
 
 <template>
     <aside class="sidebar" ref="sidebar">
         <div class="account_user">
-            <img class="account_image" src="http://localhost:4000/account_image"/>
+            <img class="account_image" :src="`http://localhost:4000/account_image?cache=${Date.now()}`"/>
             <h2 class="account_name">
                 {{name}}
             </h2>

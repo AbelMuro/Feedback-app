@@ -1,14 +1,16 @@
 <script setup>
     import icons from './icons';
-    import {ref, onMounted} from 'vue';
+    import {ref, onMounted, onBeforeUnmount} from 'vue';
     import { AnimatePresence, motion } from 'motion-v';
-    import {useToastStore} from '~/Store';
+    import { storeToRefs } from 'pinia';
+    import {useToastStore, useAccountStore} from '~/Store';
 
-    const store = useToastStore();
-    const {showToast} = store;
+    const toastStore = useToastStore();
+    const accountStore = useAccountStore();
+    const {showToast} = toastStore;
+    const {updateAccount, clearAccount} = accountStore;
+    const {name, email} = storeToRefs(accountStore);
     const open = ref(false);
-    const name = ref('');
-    const email = ref('');
 
     const handleOpen = () => {
         open.value = !open.value;
@@ -24,8 +26,7 @@
             if(response.status === 200){
                 const result = await response.json();
                 console.log(result);
-                name.value = result.name;
-                email.value = result.email;
+                updateAccount(result.email, result.name);
             }
         }
         catch(error){
@@ -37,6 +38,11 @@
 
     onMounted(() => {
         getAccountInfo();
+        document.addEventListener('update_account', getAccountInfo)
+    });
+
+    onBeforeUnmount(() => {
+        document.removeEventListener('update_account', getAccountInfo);
     });
 
 </script>
@@ -55,7 +61,7 @@
                 :animate="{scale: 1}"
                 :exit="{scale: 0}"
                 :transition="{scale: 0}">
-                    <img class="user_image" src="http://localhost:4000/account_image"/>
+                    <img class="user_image" :src="`http://localhost:4000/account_image?cache=${Date.now()}`"/>
                     <h2 class="user_name">
                         {{name}}
                     </h2>

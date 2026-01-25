@@ -2,7 +2,8 @@
     import {ref, watch} from 'vue';
     import {motion} from 'motion-v';
 
-    const name = ref('');
+    const {oldName} = defineProps(['oldName']);
+    const name = ref(oldName || '');
     const error = ref('');
 
 

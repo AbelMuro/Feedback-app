@@ -2,7 +2,8 @@
     import {ref, watch} from 'vue';
     import {motion} from 'motion-v';
 
-    const email = ref('');
+    const {oldEmail} = defineProps(['oldEmail']);
+    const email = ref(oldEmail || '');
     const error = ref('');
 
     const handleInput = (e) => {

@@ -4,10 +4,13 @@
     import EnterName from '~/Common/Components/EnterName';
     import UploadImage from '~/Common/Components/UploadImage';
     import {useRouter} from 'vue-router';
-    import {useToastStore} from '~/Store';
+    import { storeToRefs } from 'pinia';
+    import {useToastStore, useAccountStore} from '~/Store';
 
-    const store = useToastStore();
-    const {showToast} = store;
+    const toastStore = useToastStore();
+    const accountStore = useAccountStore();
+    const {name, email} = storeToRefs(accountStore);
+    const {showToast} = toastStore;
     const router = useRouter();
 
     const handleSubmit = async (e) => {
@@ -16,7 +19,7 @@
             e.preventDefault();
             const email = e.target.elements.email.value;
             const name = e.target.elements.name.value;
-            const image = e.target.elements.image.file?.[0];
+            const image = e.target.elements.image.files[0];
             const form = new FormData();
             form.append('email', email);
             form.append('name', name);
@@ -24,9 +27,6 @@
 
             const response = await fetch('http://localhost:4000/update_account', {
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
                 body: form,
                 credentials: 'include',
             });
@@ -35,6 +35,8 @@
                 const result = await response.text();
                 console.log(result);
                 showToast(result);
+                const event = new CustomEvent('update_account');
+                document.dispatchEvent(event);
             }
             else if (response.status === 401){
                 const result = await response.text();
@@ -68,10 +70,10 @@
                 </label>
             </motion.fieldset>
             <motion.fieldset layout class="settings_email">
-                <EnterEmail/>
+                <EnterEmail :oldEmail="email"/>
             </motion.fieldset>
             <motion.fieldset layout class="settings_name">
-                <EnterName/>
+                <EnterName :oldName="name"/>
             </motion.fieldset>
             <motion.fieldset layout class="settings_image">
                 <UploadImage />
