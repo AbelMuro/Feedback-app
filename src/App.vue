@@ -4,9 +4,8 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i finally finished the update account feature of the Account page
-
-        now i need to implement the update password feature in the account page
+        this is where i left off, i am currently on the back end, i need to finish hashing the password
+        in the /update_password route
     */
 
 </script>

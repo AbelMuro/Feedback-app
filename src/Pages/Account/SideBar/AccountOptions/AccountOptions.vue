@@ -21,13 +21,17 @@
 
 <template>
     <ul class="account_options">
-        <li class="account_option" @click="() => handleOption('/account/details')">
+        <li class="account_option" @click="() => handleOption('/account/update_details')">
             Details
-            <motion.div layoutId="line" class="line" v-if="option === '/account/details'"/>
+            <motion.div layoutId="line" class="line" v-if="option === '/account/update_details'"/>
         </li>
-        <li class="account_option" @click="() => handleOption('/account/feedback')">
+        <li class="account_option" @click="() => handleOption('/account/update_password')">
+            Password
+            <motion.div layoutId="line" class="line" v-if="option === '/account/update_password'"/>
+        </li>
+        <li class="account_option" @click="() => handleOption('/account/display_all_feedback')">
             Feedback
-            <motion.div layoutId="line" class="line" v-if="option === '/account/feedback'"/>
+            <motion.div layoutId="line" class="line" v-if="option === '/account/display_all_feedback'"/>
         </li>
         <LogOut/>
     </ul>

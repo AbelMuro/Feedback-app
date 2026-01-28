@@ -8,10 +8,11 @@ import ForgotPassword from './Pages/Authorization/ForgotPassword';
 import ResetPassword from './Pages/Authorization/ResetPassword';
 import SubmitFeedback from './Pages/SubmitFeedback';
 import Account from './Pages/Account';
-import Details from './Pages/Account/Details';
-import AllFeedback from './Pages/Account/AllFeedback';
+import UpdateDetails from './Pages/Account/UpdateDetails';
+import DisplayAllFeedback from './Pages/Account/DisplayAllFeedback';
 import Home from './Pages/Home';
 import Thread from './Pages/Thread';
+import UpdatePassword from './Pages/Account/UpdatePassword';
 
 const router = createRouter({
     history: createWebHistory(),                        //this will save the URL endpoint of every route, and display it in the URL
@@ -19,8 +20,9 @@ const router = createRouter({
         {path: '/', component: Home},
         {path: '/account', component: Account,
             children: [
-                {path: 'details', component: Details},
-                {path: 'feedback', component: AllFeedback}
+                {path: 'update_details', component: UpdateDetails},
+                {path: 'display_all_feedback', component: DisplayAllFeedback},
+                {path: 'update_password', component: UpdatePassword}
             ]
         },
         {path: '/login', component: Login},        

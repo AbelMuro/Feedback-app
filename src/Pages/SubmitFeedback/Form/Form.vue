@@ -31,7 +31,7 @@
                 const result = await response.text();
                 console.log(result);
                 showToast(result);
-                router.push('/account/feedback')
+                router.push('/account/display_all_feedback')
             }
             else{
                 const result = await response.text();

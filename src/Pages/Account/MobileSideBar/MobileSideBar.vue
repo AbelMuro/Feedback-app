@@ -47,10 +47,13 @@
 <template>
     <footer class="footer">
         <AccountDialog/>
-        <button class="footer_link" @click="() => handleLink('/account/details')">
+        <button class="footer_link" @click="() => handleLink('/account/update_details')">
             <img :src="icons['settings']">
         </button>
-        <button class="footer_link" @click="() => handleLink('/account/feedback')">
+            <button class="footer_link" @click="() => handleLink('/account/update_password')">
+            <img :src="icons['password']">
+        </button>
+        <button class="footer_link" @click="() => handleLink('/account/display_all_feedback')">
             <img :src="icons['feedback']"/>
         </button>
         <LogOut/>
