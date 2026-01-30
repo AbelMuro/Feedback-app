@@ -51,7 +51,7 @@
             </h2>
         </header>
         <DisplayAllMessages/>
-        <SendMessage/>
+        <SendMessage :threadOwnerId="feedback.account_id"/>
     </section>
 </template>
 

@@ -1,6 +1,6 @@
 <script setup>
     import {motion, AnimatePresence} from 'motion-v';
-    const {open, message, handleOpen, handleSubmit} = defineProps(['open', 'message', 'handleOpen', 'handleSubmit'])
+    const {open, message, handleOpen, handleSubmit, submit } = defineProps(['open', 'message', 'handleOpen', 'handleSubmit', 'submit'])
     
 
 </script>
@@ -27,7 +27,7 @@
                             Cancel
                         </button>
                         <button class="dialog_submit" @click="handleSubmit">
-                            Logout
+                            {{submit}}
                         </button>
                 </motion.dialog>
         </motion.div>

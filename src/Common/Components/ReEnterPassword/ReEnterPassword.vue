@@ -4,8 +4,8 @@
     import icons from './icons';
 
     const {label, name} = defineProps(['label', 'name']);
-    const {password} = defineModel('password');
 
+    const password = ref('');
     const error = ref('');
     const visible = ref(false);
 

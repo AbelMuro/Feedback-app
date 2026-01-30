@@ -4,6 +4,7 @@
     import {useRouter, useRoute} from 'vue-router';
     import {ref} from 'vue';
     import LogOut from './LogOut';
+    import DeleteAccount from './DeleteAccount';
 
     const router = useRouter();
     const route = useRoute();
@@ -34,6 +35,7 @@
             <motion.div layoutId="line" class="line" v-if="option === '/account/display_all_feedback'"/>
         </li>
         <LogOut/>
+        <DeleteAccount/>
     </ul>
 </template>
 

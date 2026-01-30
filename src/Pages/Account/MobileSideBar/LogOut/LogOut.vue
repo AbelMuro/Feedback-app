@@ -50,8 +50,10 @@
 <template>
     <button class="logout" @click="handleOpen">
         <img :src="icons['logout']">
+        Log Out
     </button>
     <Dialog
+        submit="Logout"
         :open="open" 
         :handleOpen="handleOpen"
         :handleSubmit="handleLogout"
@@ -62,13 +64,24 @@
     .logout{
         width: 60px;
         height: 60px;
+        padding: 0px;
         background-color: transparent;
         border: none;
         cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: var(--white-0);
+        font-family: var(--preset-text-4-fontfamily);
+        font-size: var(--preset-text-4-fontsize);
+        font-weight: var(--preset-text-4-fontweight);
+        line-height: var(--preset-text-4-lineheight);
+        letter-spacing: var(--preset-text-4-letter-spacing);
     }
 
     .logout > img{
-        width: 50px;
+        width: 45px;
         object-fit: contain;
     }
 </style>

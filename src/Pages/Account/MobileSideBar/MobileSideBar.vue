@@ -3,6 +3,7 @@
     import LogOut from './LogOut';
     import icons from './icons';
     import AccountDialog from './AccountDialog';
+    import DeleteDialog from './DeleteDialog';
     import {useRouter} from 'vue-router';
     import {useToastStore} from '~/Store';
 
@@ -49,14 +50,18 @@
         <AccountDialog/>
         <button class="footer_link" @click="() => handleLink('/account/update_details')">
             <img :src="icons['settings']">
+            Details
         </button>
             <button class="footer_link" @click="() => handleLink('/account/update_password')">
             <img :src="icons['password']">
+            Password
         </button>
         <button class="footer_link" @click="() => handleLink('/account/display_all_feedback')">
             <img :src="icons['feedback']"/>
+            Feedback
         </button>
         <LogOut/>
+        <DeleteDialog/>
     </footer>
 </template>
 
@@ -78,7 +83,17 @@
         height: 60px;
         background-color: transparent;
         border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
         cursor: pointer;
+        color: var(--white-0);
+        font-family: var(--preset-text-4-fontfamily);
+        font-size: var(--preset-text-4-fontsize);
+        font-weight: var(--preset-text-4-fontweight);
+        line-height: var(--preset-text-4-lineheight);
+        letter-spacing: var(--preset-text-4-letter-spacing);
     }
 
     .footer_link > img{
@@ -92,5 +107,10 @@
     .footer_link:nth-of-type(2) > img{
         width: 40px;
     }
+
+    .footer_link:nth-of-type(3) > img{
+        width: 40px;
+    }
+
 
 </style>

@@ -4,8 +4,9 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently on the back end, i need to finish hashing the password
-        in the /update_password route
+        this is where i left off, i am working on the delete account feature
+
+        i am currently refactoring the Dialog component
     */
 
 </script>

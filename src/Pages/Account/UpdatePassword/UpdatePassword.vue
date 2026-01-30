@@ -7,8 +7,6 @@
 
     const store = useToastStore();
     const {showToast} = store;
-    const password = ref('');
-    const reEnterPassword = ref('');
     const error = ref('');
     const loading = ref(false);
 
@@ -16,7 +14,9 @@
         try{
             e.preventDefault();
             loading.value = true;
-            if(password.value !== reEnterPassword.value){
+            const password = e.target.elements.password.value;
+            const reEnterPassword = e.target.elements.reEnterPassword.value;
+            if(password !== reEnterPassword){
                 error.value = "Password's don't match";
                 return;
             }
@@ -26,7 +26,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({password: password.value}),
+                body: JSON.stringify({password}),
                 credentials: 'include'
             });
 
@@ -65,10 +65,10 @@
                 </label>
             </motion.fieldset>
             <motion.fieldset layout class="settings_input">
-                <ReEnterPassword v-model="password"/>
+                <ReEnterPassword name='password' label="Enter Password:"/>
             </motion.fieldset>
             <motion.fieldset layout class="settings_input">
-                <ReEnterPassword v-model="reEnterPassword"/>
+                <ReEnterPassword name='reEnterPassword' label="ReEnter Password:"/>
             </motion.fieldset>
             <motion.div 
                 layout

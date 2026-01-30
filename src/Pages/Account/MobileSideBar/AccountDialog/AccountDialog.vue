@@ -51,6 +51,7 @@
     <div class="user_container">
         <button class="user" @click="handleOpen">
             <img :src="icons['user']"/>
+            Account
         </button>
         <AnimatePresence>
             <motion.dialog 
@@ -83,7 +84,17 @@
         height: 60px;
         background-color: transparent;
         border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
+        color: var(--white-0);
+        font-family: var(--preset-text-4-fontfamily);
+        font-size: var(--preset-text-4-fontsize);
+        font-weight: var(--preset-text-4-fontweight);
+        line-height: var(--preset-text-4-lineheight);
+        letter-spacing: var(--preset-text-4-letter-spacing);
     }
 
     .user > img{

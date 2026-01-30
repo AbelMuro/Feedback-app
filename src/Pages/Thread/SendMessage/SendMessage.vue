@@ -4,6 +4,8 @@
     import {VueSpinner} from 'vue3-spinners';
     import {useRoute} from 'vue-router';
 
+    const {threadOwnerId} = defineProps(['threadOwnerId']); 
+
     const message = ref('');
     const error = ref('');
     const loading = ref(false);
@@ -37,7 +39,8 @@
                 },
                 body: JSON.stringify({
                     message: textAreaMessage,
-                    threadId
+                    threadId,
+                    threadOwnerId
                 }),
                 credentials: 'include'
             });
