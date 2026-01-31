@@ -52,6 +52,7 @@
         Log Out
     </li>
     <Dialog 
+        submit="Log out"
         :open="open" 
         :handleOpen="handleOpen"
         :handleSubmit="handleLogout"

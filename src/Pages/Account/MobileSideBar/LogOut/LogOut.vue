@@ -1,11 +1,12 @@
 <script setup>
     import {ref} from 'vue';
     import icons from './icons';
-    import {motion, AnimatePresence} from 'motion-v';
     import Dialog from '~/Common/Components/Dialog';
     import {useToastStore} from '~/Store';
     import {useRouter} from 'vue-router';
+    import {useMediaQuery} from '~/Common/Hooks';
 
+    const [mobile] = useMediaQuery('(max-width: 500px)');
     const open = ref(false);
     const router = useRouter();
     const store = useToastStore();
@@ -50,7 +51,7 @@
 <template>
     <button class="logout" @click="handleOpen">
         <img :src="icons['logout']">
-        Log Out
+        <span v-if="!mobile">Log Out</span>
     </button>
     <Dialog
         submit="Logout"
@@ -63,7 +64,6 @@
 <style scoped>
     .logout{
         width: 60px;
-        height: 60px;
         padding: 0px;
         background-color: transparent;
         border: none;
@@ -71,13 +71,14 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        gap: 10px;
         align-items: center;
         color: var(--white-0);
-        font-family: var(--preset-text-4-fontfamily);
-        font-size: var(--preset-text-4-fontsize);
-        font-weight: var(--preset-text-4-fontweight);
-        line-height: var(--preset-text-4-lineheight);
-        letter-spacing: var(--preset-text-4-letter-spacing);
+        font-family: var(--preset-text-5-fontfamily);
+        font-size: var(--preset-text-5-fontsize);
+        font-weight: var(--preset-text-5-fontweight);
+        line-height: var(--preset-text-5-lineheight);
+        letter-spacing: var(--preset-text-5-letter-spacing);
     }
 
     .logout > img{

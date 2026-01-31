@@ -87,7 +87,8 @@
 
     @media(max-width: 620px){
         .label{
-            font-size: 1.2rem;
+            font-size: 1rem;
         }        
     }
+
 </style>

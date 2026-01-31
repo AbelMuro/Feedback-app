@@ -4,9 +4,9 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am working on the delete account feature
+        this is where i left off, i am working on the account image component
 
-        i am currently refactoring the Dialog component
+        i am currently on the back end
     */
 
 </script>
@@ -102,6 +102,12 @@
         --preset-text-4-fontsize: 1rem;
         --preset-text-4-lineheight: 140%;
         --preset-text-4-letterspacing: 0px;
+
+        --preset-text-5-fontfamily: 'roboto';
+        --preset-text-5-fontweight: 300;
+        --preset-text-5-fontsize: 0.8rem;
+        --preset-text-5-lineheight: 120%;
+        --preset-text-5-letterspacing: 0px;
     }
 
 </style>

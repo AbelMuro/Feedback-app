@@ -2,7 +2,6 @@
     import {motion, AnimatePresence} from 'motion-v';
     const {open, message, handleOpen, handleSubmit, submit } = defineProps(['open', 'message', 'handleOpen', 'handleSubmit', 'submit'])
     
-
 </script>
 
 <template>
@@ -54,6 +53,7 @@
         position: absolute;
         inset: 0px;
         margin: auto;
+        z-index: var(--closest);
         display: grid;
         grid-template-columns: 1fr 1fr;
         column-gap: 25px;

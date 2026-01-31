@@ -6,7 +6,9 @@
     import DeleteDialog from './DeleteDialog';
     import {useRouter} from 'vue-router';
     import {useToastStore} from '~/Store';
+    import {useMediaQuery} from '~/Common/Hooks';
 
+    const [mobile] = useMediaQuery('(max-width: 500px)');
     const store = useToastStore();
     const {showToast} = store;
     const router = useRouter();
@@ -50,15 +52,15 @@
         <AccountDialog/>
         <button class="footer_link" @click="() => handleLink('/account/update_details')">
             <img :src="icons['settings']">
-            Details
+            <span v-if="!mobile">Details</span>
         </button>
             <button class="footer_link" @click="() => handleLink('/account/update_password')">
             <img :src="icons['password']">
-            Password
+            <span v-if="!mobile">Password</span>
         </button>
         <button class="footer_link" @click="() => handleLink('/account/display_all_feedback')">
             <img :src="icons['feedback']"/>
-            Feedback
+            <span v-if="!mobile">Feedback</span>
         </button>
         <LogOut/>
         <DeleteDialog/>
@@ -80,20 +82,20 @@
 
     .footer_link{
         width: 60px;
-        height: 60px;
         background-color: transparent;
         border: none;
         display: flex;
         justify-content: center;
+        gap: 10px;
         align-items: center;
         flex-direction: column;
         cursor: pointer;
         color: var(--white-0);
-        font-family: var(--preset-text-4-fontfamily);
-        font-size: var(--preset-text-4-fontsize);
-        font-weight: var(--preset-text-4-fontweight);
-        line-height: var(--preset-text-4-lineheight);
-        letter-spacing: var(--preset-text-4-letter-spacing);
+        font-family: var(--preset-text-5-fontfamily);
+        font-size: var(--preset-text-5-fontsize);
+        font-weight: var(--preset-text-5-fontweight);
+        line-height: var(--preset-text-5-lineheight);
+        letter-spacing: var(--preset-text-5-letter-spacing);
     }
 
     .footer_link > img{
@@ -112,5 +114,10 @@
         width: 40px;
     }
 
+    @media(max-width: 500px){
+        .footer{
+            gap: 0px;
+        }
+    }
 
 </style>

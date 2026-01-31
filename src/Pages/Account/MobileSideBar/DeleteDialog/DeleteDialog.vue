@@ -4,7 +4,9 @@
     import {useRouter} from 'vue-router';
     import Dialog from '~/Common/Components/Dialog';
     import icons from './icons';
+    import {useMediaQuery} from '~/Common/Hooks';
 
+    const [mobile] = useMediaQuery('(max-width: 500px)');
     const open = ref(false);
     const store = useToastStore();
     const router = useRouter();
@@ -38,7 +40,7 @@
 <template>
     <li class="account_option" @click="handleOpen">
         <img :src="icons['deleteAccount']"/>
-        Delete
+        <span v-if="!mobile">Delete</span>
     </li>
     <Dialog 
         submit="Delete"
@@ -50,22 +52,18 @@
 
 <style scoped>
     .account_option{
-        color: var(--white-0);
-        font-family: var(--preset-text-3-fontfamily);
-        font-size: var(--preset-text-3-fontsize);
-        line-height: var(--preset-text-3-lineheight);
-        letter-spacing: var(--preset-text-3-letterspacing);
         display: flex;
         flex-direction: column;
         justify-content: center;
+        gap: 10px;
         align-items: center;
         cursor: pointer;
         color: var(--white-0);
-        font-family: var(--preset-text-4-fontfamily);
-        font-size: var(--preset-text-4-fontsize);
-        font-weight: var(--preset-text-4-fontweight);
-        line-height: var(--preset-text-4-lineheight);
-        letter-spacing: var(--preset-text-4-letter-spacing);
+        font-family: var(--preset-text-5-fontfamily);
+        font-size: var(--preset-text-5-fontsize);
+        font-weight: var(--preset-text-5-fontweight);
+        line-height: var(--preset-text-5-lineheight);
+        letter-spacing: var(--preset-text-5-letter-spacing);
     }
 
     .account_option > img{

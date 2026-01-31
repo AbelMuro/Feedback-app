@@ -169,6 +169,7 @@
         background-color: var(--blue-0);
         font-family: var(--preset-text-2-fontfamily);
         font-size: var(--preset-text-2-fontsize);
+        font-weight: var(--preset-text-2-fontweight);
         line-height: var(--preset-text-2-lineheight);
         letter-spacing: var(--preset-text-2-letterspacing);
         color: var(--white-0);

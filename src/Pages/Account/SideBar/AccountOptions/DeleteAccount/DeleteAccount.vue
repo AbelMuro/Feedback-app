@@ -17,6 +17,7 @@
         try{
             const response = await fetch('http://localhost:4000/delete_account', {
                 method: 'DELETE',
+                credentials: 'include'
             })
             const result = await response.text();
             console.log(result);
@@ -26,6 +27,8 @@
                 router.push('/login');
             else if(response.status === 404)
                 router.push('/register');
+            else
+                router.push('/')
         }
         catch(error){
             const message = error.message;
@@ -39,6 +42,7 @@
         Delete Account
     </li>
     <Dialog 
+        submit="Delete"
         :open="open" 
         :handleOpen="handleOpen"
         :handleSubmit="handleDelete"
@@ -59,7 +63,6 @@
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        position: relative;
     }
 
     .account_option:last-child{

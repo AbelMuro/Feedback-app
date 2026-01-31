@@ -43,12 +43,16 @@
             My Feedback
         </h1>
         <Feedback 
+            v-if="allFeedback.length"
             v-for="(feedback) in allFeedback" 
             :key="feedback.id" 
             :id="feedback.id"
             :title="feedback.title"
             :feedback="feedback.feedback"
             />
+        <p class="message">
+            You have no feedback
+        </p>
     </section>
 </template>
 
@@ -58,7 +62,7 @@
         min-height: 100%;
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 25px;
         padding: 25px;
         margin: auto;
         transition: all 0.2s linear, min-height 0s;
@@ -72,6 +76,17 @@
         color: var(--white-0);
         margin: 0px;
         align-self: center;
+    }
+
+    .message{
+        margin: 0px;
+        color: var(--white-0);
+        font-family: var(--preset-text-2-fontfamily);
+        font-size: var(--preset-text-2-fontsize);
+        font-weight: var(--preset-text-2-fontweight);
+        line-height: var(--preset-text-2-lineheight);
+        letter-spacing: var(--preset-text-2-letterspacing);
+        text-align: center;
     }
 
     @media(max-width: 720px){

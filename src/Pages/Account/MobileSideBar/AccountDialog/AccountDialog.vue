@@ -3,12 +3,14 @@
     import {ref, onMounted, onBeforeUnmount} from 'vue';
     import { AnimatePresence, motion } from 'motion-v';
     import { storeToRefs } from 'pinia';
+    import {useMediaQuery} from '~/Common/Hooks';
     import {useToastStore, useAccountStore} from '~/Store';
 
+    const [mobile] = useMediaQuery('(max-width: 500px)');
     const toastStore = useToastStore();
     const accountStore = useAccountStore();
     const {showToast} = toastStore;
-    const {updateAccount, clearAccount} = accountStore;
+    const {updateAccount} = accountStore;
     const {name, email} = storeToRefs(accountStore);
     const open = ref(false);
 
@@ -51,7 +53,7 @@
     <div class="user_container">
         <button class="user" @click="handleOpen">
             <img :src="icons['user']"/>
-            Account
+            <span v-if="!mobile">Account</span>
         </button>
         <AnimatePresence>
             <motion.dialog 
@@ -81,20 +83,20 @@
 
     .user{
         width: 60px;
-        height: 60px;
         background-color: transparent;
         border: none;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        gap: 10px;
         align-items: center;
         cursor: pointer;
         color: var(--white-0);
-        font-family: var(--preset-text-4-fontfamily);
-        font-size: var(--preset-text-4-fontsize);
-        font-weight: var(--preset-text-4-fontweight);
-        line-height: var(--preset-text-4-lineheight);
-        letter-spacing: var(--preset-text-4-letter-spacing);
+        font-family: var(--preset-text-5-fontfamily);
+        font-size: var(--preset-text-5-fontsize);
+        font-weight: var(--preset-text-5-fontweight);
+        line-height: var(--preset-text-5-lineheight);
+        letter-spacing: var(--preset-text-5-letter-spacing);
     }
 
     .user > img{
@@ -109,7 +111,7 @@
         border-radius: 15px;
         position: absolute;
         bottom: 80px;
-        left: -30px;
+        left: 0px;
         background-color: var(--blue-100);
         border: none;
         display: flex;
