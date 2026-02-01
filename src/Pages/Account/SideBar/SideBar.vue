@@ -1,40 +1,15 @@
 <script setup>
-    import {onMounted, onBeforeUnmount, ref} from 'vue';
+    import {onMounted, onBeforeUnmount} from 'vue';
     import AccountOptions from './AccountOptions';
     import {storeToRefs} from 'pinia';
     import {useToastStore, useAccountStore} from '~/Store';
-    import icons from '~/Common/icons';
+    import AccountImage from './AccountImage';
 
-    const imageSRC = ref('');
     const toastStore = useToastStore();
     const accountStore = useAccountStore();
     const {showToast} = toastStore;
     const {updateAccount} = accountStore;
     const {email, name} = storeToRefs(accountStore);
-
-    const getAccountImage = async () => {
-        try{    
-            const response = await fetch(`http://localhost:4000/account_image?cache=${Date.now()}`, {
-                method: 'GET',
-                credentials: 'include',
-            });
-
-            if(response.status === 200){
-                const result = await response.blob();
-                imageSRC.value = result;
-            }
-            else{
-                const result = await response.text();
-                console.log(result);
-                imageSRC.value = icons['emptyAvatar'];
-            }
-        }
-        catch(error) {
-            const message = error.message;
-            console.log(message);
-            imageSRC.value = icons['emptyAvatar'];
-        }
-    }
 
     const getAccountInfo = async () => {
         try{
@@ -59,24 +34,18 @@
 
     onMounted(() => {
         getAccountInfo();
-        getAccountImage();
         document.addEventListener('update_account', getAccountInfo);
-        document.addEventListener('update_account', getAccountImage);
     });
 
     onBeforeUnmount(() => {
         document.removeEventListener('update_account', getAccountInfo);
-        document.removeEventListener('update_account', getAccountImage);
     });
 </script>
 
 <template>
     <aside class="sidebar" ref="sidebar">
         <div class="account_user">
-            <img 
-                class="account_image" 
-                :src="imageSRC"
-                />
+            <AccountImage/>
             <h2 class="account_name">
                 {{name}}
             </h2>
@@ -126,16 +95,5 @@
         letter-spacing: var(--preset-text-4-letterspacing);
         margin: 0px;
         color: var(--white-100);
-    }
-
-    .account_image{
-        width: 60px;
-        height: 60px;
-        justify-self: center;
-        align-self: center;
-        border-radius: 100%;
-        grid-column: 1/2;
-        grid-row: 1/2;
-        justify-self: center;
     }
 </style>

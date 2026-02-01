@@ -1,5 +1,6 @@
 <script setup>
     import icons from './icons';
+    import AccountImage from './AccountImage';
     import {ref, onMounted, onBeforeUnmount} from 'vue';
     import { AnimatePresence, motion } from 'motion-v';
     import { storeToRefs } from 'pinia';
@@ -64,7 +65,7 @@
                 :animate="{scale: 1}"
                 :exit="{scale: 0}"
                 :transition="{scale: 0}">
-                    <img class="user_image" :src="`http://localhost:4000/account_image?cache=${Date.now()}`"/>
+                    <AccountImage/>
                     <h2 class="user_name">
                         {{name}}
                     </h2>
@@ -153,14 +154,4 @@
         color: var(--white-100);
     }
 
-    .user_image{
-        width: 60px;
-        height: 60px;
-        justify-self: center;
-        align-self: center;
-        border-radius: 100%;
-        grid-column: 1/2;
-        grid-row: 1/2;
-        justify-self: center;
-    }
 </style>

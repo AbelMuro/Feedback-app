@@ -2,10 +2,16 @@
     import {ref, onMounted} from 'vue'
     import Feedback from './Feedback';
     import {useToastStore} from '~/Store';
+    import {useRouter} from 'vue-router'; 
 
+    const router = useRouter();
     const store = useToastStore();
     const {showToast} = store;
     const allFeedback = ref([]);
+
+    const handleStart = () => {
+        router.push('/feedback');
+    }
 
     const getFeedback = async () => {
         try{
@@ -50,9 +56,12 @@
             :title="feedback.title"
             :feedback="feedback.feedback"
             />
-        <p class="message">
-            You have no feedback
+        <p class="message" v-if="!allFeedback.length">
+            You have no feedback. Create feedback using the following button
         </p>
+        <button class="submit" @click="handleStart" v-if="!allFeedback.length">
+            Submit Feedback
+        </button>
     </section>
 </template>
 
@@ -87,6 +96,50 @@
         line-height: var(--preset-text-2-lineheight);
         letter-spacing: var(--preset-text-2-letterspacing);
         text-align: center;
+    }
+
+    .submit{
+        padding: 0px 15px;
+        height: 60px;
+        border: 1px solid var(--blue-0);
+        border-radius: 10px;
+        color: var(--white-0);
+        background-color: var(--blue-300);
+        font-family: var(--preset-text-2-fontfamily);
+        font-size: var(--preset-text-2-fontsize);
+        font-weight: var(--preset-text-2-fontweight);
+        line-height: var(--preset-text-2-lineheight);
+        cursor: pointer;
+        position: relative;
+    }
+
+    .submit::after{
+        content: '';
+        position: absolute;
+        inset: 0px;
+        margin: auto;
+        width: 100%;
+        height: 60px;
+        background-color: var(--blue-0);
+        filter: var(--blur-button);
+        z-index: var(--farthest);
+        transition: all 0.2s linear;
+    }
+
+    .submit:hover{
+        background-color: var(--blue-200);
+    }
+
+    .submit:hover::after{
+        filter: var(--blur-button-hover)
+    }
+
+    .submit:active{
+        background-color: var(--blue-100);
+    }
+
+    .submit:active::after{
+        filter: var(--blur-button-active);
     }
 
     @media(max-width: 720px){

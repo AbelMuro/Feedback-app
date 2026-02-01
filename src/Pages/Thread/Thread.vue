@@ -91,4 +91,24 @@
         color: var(--white-100);
         margin: 0px;
     }
+
+    @media(max-width: 870px){
+        .container{
+            width: 90%;
+        }
+
+        .feedback_title{
+            font-size: 1.5rem;
+        }
+
+        .feedback_desc{
+            font-size: 1.2rem;
+        }
+    }
+
+    @media(max-width: 620px){
+        .container{
+            padding: 10px;
+        }
+    }
 </style>

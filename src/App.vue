@@ -4,10 +4,15 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am working on the account image component
+        this is where i left off, i am working on the Message component
 
-        i am currently on the back end
-    */
+        i refactored the database and the thread_messages table to include a new column 'message_owner_id'
+
+        with every instance of the Message component, it will make a fetch request to the server for the
+        most recent account information of the user who originally posted the message on a thread
+        
+        
+        */
 
 </script>
 
@@ -88,7 +93,7 @@
         --preset-text-2-fontfamily: 'roboto';
         --preset-text-2-fontweight: 300;
         --preset-text-2-fontsize: 1.3rem;
-        --preset-text-2-lineheight: 110%;
+        --preset-text-2-lineheight: 130%;
         --preset-text-2-letterspacing: 0px;
 
         --preset-text-3-fontfamily: 'roboto';
