@@ -28,7 +28,10 @@
             else if(response.status === 404)
                 router.push('/register');
             else
-                router.push('/')
+                router.push('/');
+            const event = new CustomEvent('auth_change');
+            document.dispatchEvent(event)
+                
         }
         catch(error){
             const message = error.message;

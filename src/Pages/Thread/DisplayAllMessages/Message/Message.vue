@@ -1,5 +1,9 @@
 <script setup>
+    import {ref, onMounted} from 'vue';
     const {messageOwnerId, message, created_at} = defineProps(['messageOwnerId', 'message', 'created_at']);
+
+    const name = ref('');
+    const imageId = ref('');
     
     const formatDate = (timestamp) => {
         const date = new Date(Number(timestamp));
@@ -8,15 +12,41 @@
         const year = date.getFullYear();
 
         return `${month}/${dayOfMonth}/${year}`;
-    }   
+    };
+    
+    const getUserInfo = async () => {
+        try{
+            const response = await fetch(`http://localhost:4000/get_user/${messageOwnerId}`, {
+                method: 'GET',
+            });
+
+            if(response.status === 200){
+                const result = await response.json();
+                name.value = result.name;
+                imageId.value = result.imageId;
+            }
+            else{
+                const result = await response.text();
+                console.log(result);
+            }
+        }
+        catch(error){
+            const message = error.message;
+            console.log(message);
+        }
+    }
+
+    onMounted(() => {
+        getUserInfo();
+    })
 </script>
 
 <template>
     <section class="response">
         <h1 class="response_name">
-            {{''}}
+            {{name}}
         </h1>
-        <img class="response_image" :src="`http://localhost:4000/get_image/${image}`"/>
+        <img class="response_image" :src="`http://localhost:4000/get_image/${imageId}`"/>
         <p class="response_content">
             {{message}}
         </p>
@@ -92,9 +122,4 @@
         }
     }
 
-    @media(max-width: 620px){
-        .response{
-
-        }
-    }
 </style>

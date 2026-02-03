@@ -20,6 +20,7 @@
         try{
             const response = await fetch('http://localhost:4000/delete_account', {
                 method: 'DELETE',
+                credentials: 'include'
             })
             const result = await response.text();
             console.log(result);

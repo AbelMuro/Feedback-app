@@ -4,15 +4,10 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am working on the Message component
+        this is where i left off, i am currently developing the Login feature for developers
 
-        i refactored the database and the thread_messages table to include a new column 'message_owner_id'
-
-        with every instance of the Message component, it will make a fetch request to the server for the
-        most recent account information of the user who originally posted the message on a thread
-        
-        
-        */
+        i need to create a table in the database that contains the email and key for every developer
+    */
 
 </script>
 
