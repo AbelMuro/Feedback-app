@@ -3,12 +3,29 @@
     import {motion} from 'motion-v';
     import EnterEmail from '~/Common/Components/EnterEmail';
     import EnterKey from './EnterKey';
+    import {useRouter} from 'vue-router';
 
     const loading = ref(false);
+    const router = useRouter();
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
         try{
+            const email = e.target.elements.email.value;
+            const key = e.target.elements.key.value;
 
+            const response = await fetch('http://localhost:4000/developer_login', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({email, key})
+            });
+
+            if(response.status === 200){
+                const result = await response.text();
+                console.log(result);
+                router.push('/')
+            }
         }
         catch(error){
             const message = error.message;

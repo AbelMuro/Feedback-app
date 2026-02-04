@@ -14,6 +14,7 @@ import Home from './Pages/Home';
 import Thread from './Pages/Thread';
 import UpdatePassword from './Pages/Account/UpdatePassword';
 import DeveloperLogin from './Pages/DeveloperAuthorization/Login';
+import DeveloperRegister from './Pages/DeveloperAuthorization/Register';
 
 const router = createRouter({
     history: createWebHistory(),                        //this will save the URL endpoint of every route, and display it in the URL
@@ -32,7 +33,8 @@ const router = createRouter({
         {path: '/thread/:id', component: Thread},
         {path: '/forgot_password', component: ForgotPassword},
         {path: '/reset_password/:token', component: ResetPassword},
-        {path: '/developer_login', component: DeveloperLogin}
+        {path: '/developer_login', component: DeveloperLogin},
+        {path: '/developer_register', component: DeveloperRegister}
     ],
 })
 

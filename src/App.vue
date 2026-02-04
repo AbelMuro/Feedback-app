@@ -4,9 +4,7 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently developing the Login feature for developers
-
-        i need to create a table in the database that contains the email and key for every developer
+        this is where i left off, i am currently developing the Register feature for developers only
     */
 
 </script>
