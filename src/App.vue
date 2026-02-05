@@ -5,6 +5,7 @@
 
     /* 
         this is where i left off, i am currently developing the Register feature for developers only
+        i need to double check the SQL syntax on the back end
     */
 
 </script>

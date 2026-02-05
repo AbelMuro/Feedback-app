@@ -13,7 +13,7 @@
             const email = e.target.elements.email.value;
             const key = e.target.elements.key.value;
 
-            const response = await fetch('http://localhost:4000/developer_login', {
+            const response = await fetch('http://localhost:4000/admin_login', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

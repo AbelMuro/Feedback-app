@@ -12,10 +12,10 @@
                 layout
                 >
                 <h1 class="title">
-                    Developer Login
+                    Admin Login
                 </h1>
                 <p class="desc">
-                    For developers only.
+                    For administrators only.
                 </p>
                 <Form/>
             </motion.section>
