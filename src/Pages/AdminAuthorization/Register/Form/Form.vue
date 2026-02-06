@@ -31,7 +31,7 @@
             if(response.status === 200){
                 const result = await response.text();
                 console.log(result);
-                router.push('/')
+                router.push('/admin_login')
             }
             else{
                 const result = await response.text();

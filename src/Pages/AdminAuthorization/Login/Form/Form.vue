@@ -18,7 +18,8 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({email, key})
+                body: JSON.stringify({email, key}),
+                credentials: 'include'
             });
 
             if(response.status === 200){
