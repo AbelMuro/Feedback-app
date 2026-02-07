@@ -4,12 +4,16 @@
     import EnterEmail from '~/Common/Components/EnterEmail';
     import EnterKey from './EnterKey';
     import {useRouter} from 'vue-router';
+    import {useToastStore} from '~/Store';
 
+    const store = useToastStore();
+    const {showToast} = store;
     const loading = ref(false);
     const router = useRouter();
 
     const handleSubmit = async (e) => {
         try{
+            e.preventDefault();
             const email = e.target.elements.email.value;
             const key = e.target.elements.key.value;
 
@@ -22,11 +26,13 @@
                 credentials: 'include'
             });
 
-            if(response.status === 200){
-                const result = await response.text();
-                console.log(result);
+            const result = await response.text();
+            console.log(result);
+            showToast(result);            
+
+            if(response.status === 200)
                 router.push('/')
-            }
+            
         }
         catch(error){
             const message = error.message;

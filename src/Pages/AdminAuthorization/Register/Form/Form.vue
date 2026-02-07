@@ -6,7 +6,10 @@
     import EnterName from '~/Common/Components/EnterName';
     import UploadImage from '~/Common/Components/UploadImage';
     import {useRouter} from 'vue-router';
+    import {useToastStore} from '~/Store';
 
+    const store = useToastStore();
+    const {showToast} = store;
     const loading = ref(false);
     const router = useRouter();
 
@@ -31,16 +34,19 @@
             if(response.status === 200){
                 const result = await response.text();
                 console.log(result);
-                router.push('/admin_login')
+                showToast(result);
+                router.push('/admin_login');
             }
             else{
                 const result = await response.text();
                 console.log(result);
+                showToast(result);
             }
         }
         catch(error){
             const message = error.message;
             console.log(message);
+            showToast(message);
         }
     }
 </script>

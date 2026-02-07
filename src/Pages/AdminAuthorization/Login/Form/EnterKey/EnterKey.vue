@@ -1,9 +1,15 @@
 <script setup>
     import {ref} from 'vue';
     import {motion} from 'motion-v';
+    import icons from './icons';
 
     const key = ref('');
     const error = ref('');
+    const visible = ref(false);
+
+    const handleVisibility = () => {
+        visible.value = !visible.value;
+    }
 
     const handleInput = (e) => {
         e.target.setCustomValidity('');
@@ -33,16 +39,19 @@
             <motion.label layout class="label">
                 Enter Key:
             </motion.label>
-            <motion.input 
-                name="key"
-                layout
-                type="text" 
-                class='input' 
-                :value="key"
-                @input="handleInput"
-                @blur="handleBlur"
-                @invalid="handleInvalid"
-                required/>
+            <motion.fieldset layout class="input_container">
+                <input 
+                    name="key"
+                    :type="visible ? 'text' : 'password'" 
+                    class='input' 
+                    :value="key"
+                    @input="handleInput"
+                    @blur="handleBlur"
+                    @invalid="handleInvalid"
+                    required/>
+                <img v-if="visible" class="visible" :src="icons['invisible']" @click="handleVisibility"/>
+                <img v-else class="visible" :src="icons['visible']" @click="handleVisibility"/>
+            </motion.fieldset>
             <motion.div 
                 layout
                 v-if="error"
@@ -72,6 +81,13 @@
         color: var(--white-100);
     }
 
+    .input_container{
+        position: relative;
+        border: none;
+        padding: 0px;
+        margin: 0px;
+    }
+
     .input{
         width: 100%;
         height: 60px;
@@ -99,6 +115,17 @@
         line-height: var(--preset-text-3-lineheight);
         letter-spacing: var(--preset-text-3-letterspacing);
         color: var(--red-100);
+    }
+
+    .visible{
+        width: 25px;
+        object-fit: contain;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        right: 15px;
+        cursor: pointer;
     }
 
     @media(max-width: 620px){

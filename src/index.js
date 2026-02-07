@@ -15,6 +15,7 @@ import Thread from './Pages/Thread';
 import UpdatePassword from './Pages/Account/UpdatePassword';
 import AdminLogin from './Pages/AdminAuthorization/Login';
 import AdminRegister from './Pages/AdminAuthorization/Register';
+import AdminAccount from './Pages/AdminAccount';
 
 const router = createRouter({
     history: createWebHistory(),                        //this will save the URL endpoint of every route, and display it in the URL
@@ -34,7 +35,8 @@ const router = createRouter({
         {path: '/forgot_password', component: ForgotPassword},
         {path: '/reset_password/:token', component: ResetPassword},
         {path: '/admin_login', component: AdminLogin},
-        {path: '/admin_register', component: AdminRegister}
+        {path: '/admin_register', component: AdminRegister},
+        {path: '/admin_account', component: AdminAccount}
     ],
 })
 
