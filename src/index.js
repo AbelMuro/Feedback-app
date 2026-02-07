@@ -2,20 +2,24 @@ import {createApp} from 'vue';
 import {createPinia} from 'pinia';
 import { createWebHistory, createRouter } from 'vue-router';
 import App from './App.vue';
+
 import Login from './Pages/Authorization/Login';
 import Register from './Pages/Authorization/Register';
 import ForgotPassword from './Pages/Authorization/ForgotPassword';
 import ResetPassword from './Pages/Authorization/ResetPassword';
 import SubmitFeedback from './Pages/SubmitFeedback';
 import Account from './Pages/Account';
-import UpdateDetails from './Pages/Account/UpdateDetails';
-import DisplayAllFeedback from './Pages/Account/DisplayAllFeedback';
+
+
+import UpdateDetails from './Common/Components/UpdateDetails';
+import DisplayAllFeedback from './Common/Components/DisplayAllFeedback';
+import UpdatePassword from './Common/Components/UpdatePassword';
+
 import Home from './Pages/Home';
 import Thread from './Pages/Thread';
-import UpdatePassword from './Pages/Account/UpdatePassword';
+
 import AdminLogin from './Pages/AdminAuthorization/Login';
 import AdminRegister from './Pages/AdminAuthorization/Register';
-import AdminAccount from './Pages/AdminAccount';
 
 const router = createRouter({
     history: createWebHistory(),                        //this will save the URL endpoint of every route, and display it in the URL
@@ -36,7 +40,6 @@ const router = createRouter({
         {path: '/reset_password/:token', component: ResetPassword},
         {path: '/admin_login', component: AdminLogin},
         {path: '/admin_register', component: AdminRegister},
-        {path: '/admin_account', component: AdminAccount}
     ],
 })
 

@@ -1,6 +1,6 @@
 <script setup>
     import {ref, onMounted} from 'vue'
-    import Feedback from './Feedback';
+    import Feedback from '../Feedback';
     import {useToastStore} from '~/Store';
     import {useRouter} from 'vue-router'; 
 

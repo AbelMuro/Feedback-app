@@ -17,12 +17,12 @@
             const email = e.target.elements.email.value;
             const key = e.target.elements.key.value;
 
-            const response = await fetch('http://localhost:4000/admin_login', {
+            const response = await fetch('http://localhost:4000/login', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({email, key}),
+                body: JSON.stringify({email, password: key}),
                 credentials: 'include'
             });
 
@@ -31,7 +31,7 @@
             showToast(result);            
 
             if(response.status === 200)
-                router.push('/')
+                router.push('/account');
             
         }
         catch(error){

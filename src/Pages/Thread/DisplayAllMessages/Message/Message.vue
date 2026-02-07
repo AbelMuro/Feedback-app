@@ -4,6 +4,7 @@
 
     const name = ref('');
     const imageId = ref('');
+    const isAdmin = ref(false);
     
     const formatDate = (timestamp) => {
         const date = new Date(Number(timestamp));
@@ -24,6 +25,7 @@
                 const result = await response.json();
                 name.value = result.name;
                 imageId.value = result.imageId;
+                isAdmin.value = result.isAdmin;
             }
             else{
                 const result = await response.text();
@@ -53,7 +55,9 @@
         <p class="response_date">
             {{formatDate(created_at)}}
         </p>            
-
+        <p class="response_admin" v-if="isAdmin">
+            Admin
+        </p>
     </section>
 </template>
 
@@ -92,7 +96,7 @@
     }
 
     .response_content{
-        grid-row: 1/4;
+        grid-row: 1/-1;
         grid-column: 2/4;
         margin: 0px;
         font-family: var(--preset-text-2-fontfamily);
@@ -114,6 +118,19 @@
         line-height: var(--preset-text-4-lineheight);
         letter-spacing: var(--preset-text-4-letterspacing);
         color: var(--white-100);
+    }
+
+    .response_admin{
+        grid-column: 1/2;
+        grid-row: 4/5;
+        align-self: end;
+        margin: 0px;
+        font-family: var(--preset-text-4-fontfamily);
+        font-size: var(--preset-text-4-fontsize);
+        font-weight: var(--preset-text-4-fontweight);
+        line-height: var(--preset-text-4-lineheight);
+        letter-spacing: var(--preset-text-4-letterspacing);
+        color: var(--white-0);
     }
 
     @media(max-width: 870px){

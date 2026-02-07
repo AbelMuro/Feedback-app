@@ -29,6 +29,10 @@
         router.push('/account/update_details');
     }
 
+    const handleAdminAccount = () => {
+        router.push('/admin_account/update_details');
+    }
+
     const checkLoggedInStatus = async () => {
         try{
             const response = await fetch('http://localhost:4000/authorization', {
@@ -39,16 +43,18 @@
                 credentials: 'include'
             });
 
-            if(response.status === 200){
-                const result = await response.text();
-                console.log(result);
-                loggedIn.value = true;
-            }
-            else{
-                const result = await response.text();
-                console.log(result);
+            const result = await response.text();
+            console.log(result);
+
+            if(response.status === 200)
+                loggedIn.value = 'user';
+            
+            else if(response.status === 201)
+                loggedIn.value = 'admin user';
+            
+            else
                 loggedIn.value = false;
-            }
+            
         }
         catch(error){
             const message = error.message;
@@ -93,7 +99,7 @@
             <button v-if="!loggedIn" class="login" @click="handleLogin">
                 Login
             </button>    
-            <button v-else class="account" @click="handleAccount">
+            <button v-else class="account" @click="loggedIn === 'user' ? handleAccount() : handleAdminAccount()">
                 <img class="account_icon" :src="localIcons['user']"/>
             </button>
         </div>

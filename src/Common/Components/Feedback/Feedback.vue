@@ -58,6 +58,10 @@
     }
 
     .feedback_title{
+        height: 25px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
         grid-column: 2/3;
         grid-row: 1/2;
         color: var(--white-100);
@@ -88,6 +92,10 @@
     }
 
     .feedback_desc{
+        height: 25px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
         color: var(--white-200);
         grid-column: 2/3;
         grid-row: 2/3;

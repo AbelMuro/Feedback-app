@@ -4,8 +4,10 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am currently trying to find a way to hash a key and put it in the database
-        for the admin accounts
+        this is where i left off, i am almost finished with the app, i just need to work on the css of the <Message/> 
+        component
+
+        the grid styles are not working properly
     */
 
 </script>
