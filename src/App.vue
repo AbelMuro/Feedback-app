@@ -4,10 +4,7 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am almost finished with the app, i just need to work on the css of the <Message/> 
-        component
-
-        the grid styles are not working properly
+        this is where i left off, i am finished with the app, now i can deploy the damn thing
     */
 
 </script>
