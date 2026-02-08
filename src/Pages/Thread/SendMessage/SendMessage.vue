@@ -104,6 +104,7 @@
 
 <style scoped>
     .form{
+        grid-column: 1/3;
         display: flex;
         flex-direction: column;
         gap: 15px;

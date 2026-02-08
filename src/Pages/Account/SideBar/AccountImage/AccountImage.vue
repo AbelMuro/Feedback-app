@@ -52,7 +52,7 @@
         height: 60px;
         justify-self: center;
         align-self: center;
-        border-radius: 100%;
+        clip-path: circle(30px at center center);
         grid-column: 1/2;
         grid-row: 1/2;
         justify-self: center;

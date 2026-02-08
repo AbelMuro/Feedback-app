@@ -1,0 +1,71 @@
+<script setup>
+    import {onMounted, ref} from 'vue';
+    import {useRoute} from 'vue-router';
+
+    const route = useRoute();
+    const threadId = route.params.id;
+    const imageId = ref('');
+    const name = ref('');
+
+
+    const getOriginalPosterInfo = async () => {
+        try{
+            const response = await fetch(`http://localhost:4000/get_thread_owner_info/${threadId}`, {
+                method: 'GET'
+            });
+
+            if(response.status === 200){
+                const result = await response.json();
+                console.log(result);
+                imageId.value = result.image;
+                name.value = result.name;                
+            }
+            else{
+                const result = await response.text();
+                console.log(result);
+            }
+
+        }
+        catch(error){
+            const message = error.message;
+            console.log(message);
+        }
+    }
+
+    onMounted(() => {
+        getOriginalPosterInfo();
+    })
+</script>
+
+<template>
+    <div class="original_poster">
+        <img class="original_poster_image" :src="`http://localhost:4000/get_image/${imageId}`"/>
+        <p class="original_poster_name">
+            {{name}}
+        </p>
+    </div>
+</template>
+
+<style scoped>
+    .original_poster{
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .original_poster_image{
+        width: 50px;
+        object-fit: contain;
+        clip-path: circle(25px at center center);
+    }
+
+    .original_poster_name{
+        color: white;
+        font-family: var(--preset-text-3-fontfamily);
+        font-size: var(--preset-text-3-fontsize);
+        font-weight: var(--preset-text-3-fontweight);
+        line-height: var(--preset-text-3-lineheight);
+        letter-spacing: var(--preset-text-3-letterspacing);
+        margin: 0px;
+    }
+</style>

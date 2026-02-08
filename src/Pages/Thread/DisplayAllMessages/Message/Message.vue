@@ -49,7 +49,7 @@
             {{name}}
         </h1>
         <img class="response_image" :src="`http://localhost:4000/get_image/${imageId}`"/>
-        <p class="response_content">
+        <p class="response_content" :style="isAdmin ? {gridRow: '1/5'} : {gridRow: '1/4'}">
             {{message}}
         </p>
         <p class="response_date">
@@ -63,21 +63,21 @@
 
 <style scoped>
     .response{
+        grid-column: 1/3;
         width: 100%;
         padding: 15px;
         border-radius: 15px;
         border: 1px solid var(--blue-0);
         display: grid;
         grid-template-columns: auto 1fr;
-        grid-template-rows: auto auto 1fr;
         column-gap: 15px;
         row-gap: 10px;
     }
 
     .response_image{
-        width: 40px;
+        width: 50px;
         object-fit: contain;
-        border-radius: 100%;
+        clip-path: circle(25px at center center);
         grid-column: 1/2;
         grid-row: 1/2;
         margin: auto;
@@ -96,7 +96,6 @@
     }
 
     .response_content{
-        grid-row: 1/-1;
         grid-column: 2/4;
         margin: 0px;
         font-family: var(--preset-text-2-fontfamily);
