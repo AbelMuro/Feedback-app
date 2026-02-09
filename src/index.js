@@ -10,7 +10,6 @@ import ResetPassword from './Pages/Authorization/ResetPassword';
 import SubmitFeedback from './Pages/SubmitFeedback';
 import Account from './Pages/Account';
 
-
 import UpdateDetails from './Common/Components/UpdateDetails';
 import DisplayAllFeedback from './Common/Components/DisplayAllFeedback';
 import UpdatePassword from './Common/Components/UpdatePassword';
