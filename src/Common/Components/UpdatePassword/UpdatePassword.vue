@@ -21,7 +21,7 @@
                 return;
             }
 
-            const response = await fetch('http://localhost:4000/update_password', {
+            const response = await fetch('https://feedback-server.netlify.app /update_password', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

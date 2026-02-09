@@ -11,7 +11,7 @@
 
     const checkLoginStatus = async () => {
         try{
-            const response = await fetch('http://localhost:4000/authorization', {
+            const response = await fetch('https://feedback-server.netlify.app /authorization', {
                 method: 'GET',
                 credentials: 'include'
             });

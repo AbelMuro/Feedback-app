@@ -41,7 +41,7 @@
         };
 
         try{
-            const response = await fetch('http://localhost:4000/register_account', {
+            const response = await fetch('https://feedback-server.netlify.app /register_account', {
                 method: 'POST',
                 body: formData,
             })   

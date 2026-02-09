@@ -22,7 +22,7 @@
 
     const getAccountInfo = async () => {
         try{
-            const response = await fetch('http://localhost:4000/get_account', {
+            const response = await fetch('https://feedback-server.netlify.app /get_account', {
                 method: 'GET',
                 credentials: 'include'
             });

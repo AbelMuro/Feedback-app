@@ -15,7 +15,7 @@
 
     const handleDelete = async () => {
         try{
-            const response = await fetch('http://localhost:4000/delete_account', {
+            const response = await fetch('https://feedback-server.netlify.app /delete_account', {
                 method: 'DELETE',
                 credentials: 'include'
             })

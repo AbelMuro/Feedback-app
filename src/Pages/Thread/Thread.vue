@@ -14,7 +14,7 @@
 
     const getFeedbackInfo = async () => {
         try{
-            const response = await fetch(`http://localhost:4000/get_thread/${threadId}`, {
+            const response = await fetch(`https://feedback-server.netlify.app /get_thread/${threadId}`, {
                 method: 'GET',
             });
 

@@ -17,7 +17,7 @@
     
     const getUserInfo = async () => {
         try{
-            const response = await fetch(`http://localhost:4000/get_user/${messageOwnerId}`, {
+            const response = await fetch(`https://feedback-server.netlify.app /get_user/${messageOwnerId}`, {
                 method: 'GET',
             });
 
@@ -48,7 +48,7 @@
         <h1 class="response_name">
             {{name}}
         </h1>
-        <img class="response_image" :src="`http://localhost:4000/get_image/${imageId}`"/>
+        <img class="response_image" :src="`https://feedback-server.netlify.app /get_image/${imageId}`"/>
         <p class="response_content" :style="isAdmin ? {gridRow: '1/5'} : {gridRow: '1/4'}">
             {{message}}
         </p>

@@ -29,7 +29,7 @@
                 return;
             }
 
-            const response = await fetch('http://localhost:4000/reset_password', {
+            const response = await fetch('https://feedback-server.netlify.app /reset_password', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

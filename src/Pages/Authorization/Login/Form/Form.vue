@@ -19,7 +19,7 @@
         const password = e.target.elements.password.value;
 
         try{
-            const response = await fetch('http://localhost:4000/login', {
+            const response = await fetch('https://feedback-server.netlify.app /login', {
                 method: 'PUT', 
                 headers: {
                     'Content-Type': 'application/json'

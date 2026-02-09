@@ -14,7 +14,7 @@
     const getAllResponses = async () => {
         try{
             console.log('Polling database for updates');
-            const response = await fetch(`http://localhost:4000/get_all_thread_messages/${threadId}`, {
+            const response = await fetch(`https://feedback-server.netlify.app /get_all_thread_messages/${threadId}`, {
                 method: 'GET'
             });
 
