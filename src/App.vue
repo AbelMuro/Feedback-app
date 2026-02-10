@@ -4,7 +4,7 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am finished with the app, now i can deploy the damn thing
+        this is where i left off, i am on step 7 of deploying my sql database with AWS
     */
 
 </script>
