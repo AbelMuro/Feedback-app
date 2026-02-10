@@ -15,7 +15,7 @@
 
     const getFeedback = async () => {
         try{
-            const response = await fetch('https://feedback-server.netlify.app /get_all_threads', {
+            const response = await fetch('https://feedback-server.netlify.app/get_all_threads', {
                 method: 'GET',
                 credentials: 'include',
             });

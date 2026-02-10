@@ -26,7 +26,7 @@
             form.append('name', name);
             form.append('image', image)
 
-            const response = await fetch('https://feedback-server.netlify.app /admin_register', {
+            const response = await fetch('https://feedback-server.netlify.app/admin_register', {
                 method: 'POST',
                 body: form
             });

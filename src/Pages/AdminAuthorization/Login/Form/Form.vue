@@ -17,7 +17,7 @@
             const email = e.target.elements.email.value;
             const key = e.target.elements.key.value;
 
-            const response = await fetch('https://feedback-server.netlify.app /login', {
+            const response = await fetch('https://feedback-server.netlify.app/login', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

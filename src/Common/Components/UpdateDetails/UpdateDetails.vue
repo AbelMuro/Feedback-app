@@ -25,7 +25,7 @@
             form.append('name', name);
             form.append('image', image);
 
-            const response = await fetch('https://feedback-server.netlify.app /update_account', {
+            const response = await fetch('https://feedback-server.netlify.app/update_account', {
                 method: 'PUT',
                 body: form,
                 credentials: 'include',

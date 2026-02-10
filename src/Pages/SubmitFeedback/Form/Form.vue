@@ -18,7 +18,7 @@
             const title = e.target.elements.title.value;
             const feedback = e.target.elements.feedback.value;
 
-            const response = await fetch('https://feedback-server.netlify.app /create_thread', {
+            const response = await fetch('https://feedback-server.netlify.app/create_thread', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

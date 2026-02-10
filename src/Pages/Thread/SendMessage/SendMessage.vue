@@ -32,7 +32,7 @@
             const textAreaMessage = e.target.elements.message.value;
             loading.value = true;
             e.preventDefault();
-            const response = await fetch('https://feedback-server.netlify.app /create_message', {
+            const response = await fetch('https://feedback-server.netlify.app/create_message', {
                 method: 'POST',
                 headers: {
                     'Content-Type' : 'application/json'

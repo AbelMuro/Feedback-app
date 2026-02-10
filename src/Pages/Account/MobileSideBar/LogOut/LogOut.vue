@@ -18,7 +18,7 @@
 
      const handleLogout = async () => {
         try{
-            const response = await fetch('https://feedback-server.netlify.app /logout', {
+            const response = await fetch('https://feedback-server.netlify.app/logout', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
