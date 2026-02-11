@@ -4,7 +4,9 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i am on step 7 of deploying my sql database with AWS
+        this is where i left off, i need to figure out why the account inmage is not being loaded
+
+        i may need to double check the real-url route on the back end
     */
 
 </script>
