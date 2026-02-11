@@ -12,6 +12,7 @@
             });
 
             if(response.status === 200){
+                console.log('response is 200')
                 const result = await response.blob();
                 imageSRC.value = URL.createObjectURL(result);
             }
