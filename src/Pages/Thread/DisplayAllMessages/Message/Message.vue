@@ -20,7 +20,7 @@
     const getUserImage = async (imageId) => {
         try{
             loading.value = true;
-            const response = await fetch(`https://feedback-server.netlify.app/.netlify/functions/GetImage?imageId=${imageId}`, {
+            const response = await fetch(`https://feedback-server.netlify.app/.netlify/functions/GetImage/?imageId=${imageId}`, {
                 method: 'GET'
             });
 
