@@ -54,7 +54,7 @@
                 const result = await response.json();
                 name.value = result.name;
                 isAdmin.value = result.isAdmin;
-                getUserImage(result.imageId);
+                getUserImage(result.image);
             }
             else{
                 const result = await response.text();
