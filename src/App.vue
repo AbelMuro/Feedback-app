@@ -4,9 +4,8 @@
     import { RouterView } from 'vue-router';
 
     /* 
-        this is where i left off, i need to figure out why the account inmage is not being loaded
-
-        i may need to double check the real-url route on the back end
+        this is where i left off, i am refactoring OriginalPoster and Message components
+        i need to test out OriginalPoster before moving on
     */
 
 </script>
