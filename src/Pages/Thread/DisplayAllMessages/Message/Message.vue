@@ -1,10 +1,12 @@
 <script setup>
     import {ref, onMounted} from 'vue';
+    import icons from '~/Common/icons';
     const {messageOwnerId, message, created_at} = defineProps(['messageOwnerId', 'message', 'created_at']);
 
     const name = ref('');
     const imageId = ref('');
     const isAdmin = ref(false);
+    const loading = ref(null);
     
     const formatDate = (timestamp) => {
         const date = new Date(Number(timestamp));
@@ -17,6 +19,7 @@
     
     const getUserInfo = async () => {
         try{
+            loading.value = true;
             const response = await fetch(`https://feedback-server.netlify.app/get_user/${messageOwnerId}`, {
                 method: 'GET',
             });
@@ -36,6 +39,9 @@
             const message = error.message;
             console.log(message);
         }
+        finally{
+            loading.value = false;
+        }
     }
 
     onMounted(() => {
@@ -48,7 +54,16 @@
         <h1 class="response_name">
             {{name}}
         </h1>
-        <img class="response_image" :src="`https://feedback-server.netlify.app/.netlify/functions/GetImage/?imageId=${imageId}`"/>
+        <img 
+            v-if="loading === false"
+            class="response_image" 
+            :src="`https://feedback-server.netlify.app/.netlify/functions/GetImage/?imageId=${imageId}`"
+            />
+        <img 
+            v-else   
+            class="response_image"
+            :src="icons['emptyAvatar']"
+        >
         <p class="response_content" :style="isAdmin ? {gridRow: '1/5'} : {gridRow: '1/4'}">
             {{message}}
         </p>

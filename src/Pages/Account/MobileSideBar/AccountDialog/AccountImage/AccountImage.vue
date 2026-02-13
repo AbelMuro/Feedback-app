@@ -3,9 +3,11 @@
     import icons from '~/Common/icons';
 
     const imageSRC = ref('');
+    const loading = ref(null);
 
     const getAccountImage = async () => {
         try{    
+            loading.value = true;
             const response = await fetch(`https://feedback-server.netlify.app/.netlify/functions/AccountImage?cache=${Date.now()}`, {
                 method: 'GET',
                 credentials: 'include',
@@ -26,6 +28,9 @@
             console.log(message);
             imageSRC.value = icons['emptyAvatar'];
         }
+        finally{
+            loading.value = false;
+        }
     }
 
 
@@ -41,8 +46,14 @@
 
 <template>
     <img 
+        v-if="loading === false"
         class="user_image" 
         :src="imageSRC"/>
+    <img
+        v-else
+        class="user_image"
+        :src="icons['emptyAvatar']"
+    >
 </template>
 
 <style scoped>

@@ -1,15 +1,17 @@
 <script setup>
     import {onMounted, ref} from 'vue';
     import {useRoute} from 'vue-router';
+    import icons from '~/Common/icons';
 
     const route = useRoute();
     const threadId = route.params.id;
     const imageId = ref('');
     const name = ref('');
-
+    const loading = ref(null);
 
     const getOriginalPosterInfo = async () => {
         try{
+            loading.value = true;
             const response = await fetch(`https://feedback-server.netlify.app/get_thread_owner_info/${threadId}`, {
                 method: 'GET'
             });
@@ -30,6 +32,9 @@
             const message = error.message;
             console.log(message);
         }
+        finally{
+            loading.value = false;
+        }
     }
 
     onMounted(() => {
@@ -39,7 +44,16 @@
 
 <template>
     <div class="original_poster">
-        <img class="original_poster_image" :src="`https://feedback-server.netlify.app/.netlify/functions/GetImage/?imageId=${imageId}`"/>
+        <img 
+            v-if="loading === false"
+            class="original_poster_image" 
+            :src="`https://feedback-server.netlify.app/.netlify/functions/GetImage/?imageId=${imageId}`"
+            />
+        <img 
+            v-else
+            class="original_poster_image"
+            :src="icons['emptyAvatar']"
+        >
         <p class="original_poster_name">
             {{name}}
         </p>
