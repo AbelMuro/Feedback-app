@@ -39,7 +39,7 @@
 
 <template>
     <div class="original_poster">
-        <img class="original_poster_image" :src="`https://feedback-server.netlify.app/.netlify/functions/?imageId=${imageId}`"/>
+        <img class="original_poster_image" :src="`https://feedback-server.netlify.app/.netlify/functions/GetImage/?imageId=${imageId}`"/>
         <p class="original_poster_name">
             {{name}}
         </p>
