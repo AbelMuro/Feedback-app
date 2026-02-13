@@ -48,7 +48,7 @@
         <h1 class="response_name">
             {{name}}
         </h1>
-        <img class="response_image" :src="`https://feedback-server.netlify.app/get_image/${imageId}`"/>
+        <img class="response_image" :src="`https://feedback-server.netlify.app/.netlify/functions/?imageId=${imageId}`"/>
         <p class="response_content" :style="isAdmin ? {gridRow: '1/5'} : {gridRow: '1/4'}">
             {{message}}
         </p>

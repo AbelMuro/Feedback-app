@@ -6,13 +6,12 @@
 
     const getAccountImage = async () => {
         try{    
-            const response = await fetch(`https://feedback-server.netlify.app/.netlify/functions/AccountImage`, {
+            const response = await fetch(`https://feedback-server.netlify.app/.netlify/functions/AccountImage?cache=${Date.now()}`, {
                 method: 'GET',
                 credentials: 'include',
             });
 
             if(response.status === 200){
-                console.log('response 200')
                 const result = await response.blob();
                 imageSRC.value = URL.createObjectURL(result);
             }
