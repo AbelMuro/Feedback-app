@@ -1,5 +1,5 @@
 <script setup>
-    import {onMounted, ref} from 'vue';
+    import {onMounted, ref, watch} from 'vue';
     import {useRoute} from 'vue-router';
     import icons from '~/Common/icons';
 
@@ -11,7 +11,6 @@
 
     const getOriginalPosterInfo = async () => {
         try{
-            loading.value = true;
             const response = await fetch(`https://feedback-server.netlify.app/get_thread_owner_info/${threadId}`, {
                 method: 'GET'
             });
@@ -32,10 +31,17 @@
             const message = error.message;
             console.log(message);
         }
-        finally{
-            loading.value = false;
-        }
     }
+
+    watch(imageId, (imageId) => {
+        if(!imageId)
+            loading.value = true;
+        else
+            loading.value = false;
+    }, {
+        flush: 'post',
+        immediate: true,
+    });
 
     onMounted(() => {
         getOriginalPosterInfo();
