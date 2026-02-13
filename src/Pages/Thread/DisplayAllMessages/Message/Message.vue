@@ -4,8 +4,8 @@
     const {messageOwnerId, message, created_at} = defineProps(['messageOwnerId', 'message', 'created_at']);
 
     const name = ref('');
-    const imageId = ref('');
     const isAdmin = ref(false);
+    const imageSRC = ref('');
     const loading = ref(null);
     
     const formatDate = (timestamp) => {
@@ -16,10 +16,36 @@
 
         return `${month}/${dayOfMonth}/${year}`;
     };
+
+    const getUserImage = async (imageId) => {
+        try{
+            loading.value = true;
+            const response = await fetch(`https://feedback-server.netlify.app/.netlify/functions/GetImage?imageId=${imageId}`, {
+                method: 'GET'
+            });
+
+            if(response.status === 200){
+                const blob = await response.blob();
+                imageSRC.value = URL.createObjectURL(blob);
+            }
+            else{
+                const result = await response.text();
+                console.log(result);
+                imageSRC.value = icons['emptyAvatar'];
+            }
+        }
+        catch(error){
+            const message = error.message;
+            console.log(message);
+            imageSRC.value = icons['emptyAvatar'];
+        }
+        finally{
+            loading.value = false;
+        }
+    }
     
     const getUserInfo = async () => {
         try{
-            loading.value = true;
             const response = await fetch(`https://feedback-server.netlify.app/get_user/${messageOwnerId}`, {
                 method: 'GET',
             });
@@ -27,8 +53,8 @@
             if(response.status === 200){
                 const result = await response.json();
                 name.value = result.name;
-                imageId.value = result.imageId;
                 isAdmin.value = result.isAdmin;
+                getUserImage(result.imageId);
             }
             else{
                 const result = await response.text();
@@ -38,9 +64,6 @@
         catch(error){
             const message = error.message;
             console.log(message);
-        }
-        finally{
-            loading.value = false;
         }
     }
 

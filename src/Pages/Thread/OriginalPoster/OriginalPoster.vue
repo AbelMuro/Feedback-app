@@ -29,6 +29,7 @@
         catch(error){
             const message = error.message;
             console.log(message);
+            imageSRC.value = icons['emptyAvatar'];
         }
         finally{
             loading.value = false;
