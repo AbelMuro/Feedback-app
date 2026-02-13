@@ -80,7 +80,7 @@
         <img 
             v-if="loading === false"
             class="response_image" 
-            :src="`https://feedback-server.netlify.app/.netlify/functions/GetImage/?imageId=${imageId}`"
+            :src="imageSRC"
             />
         <img 
             v-else   
