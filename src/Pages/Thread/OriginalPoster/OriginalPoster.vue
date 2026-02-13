@@ -1,13 +1,39 @@
 <script setup>
-    import {onMounted, ref, watch} from 'vue';
+    import {onMounted, ref} from 'vue';
     import {useRoute} from 'vue-router';
     import icons from '~/Common/icons';
 
     const route = useRoute();
     const threadId = route.params.id;
-    const imageId = ref('');
+    const imageSRC = ref('');
     const name = ref('');
     const loading = ref(null);
+
+    const getOriginalPosterImage = async (imageId) => {
+        try{
+            loading.value = true;
+            const response = await fetch(`https://feedback-server.netlify.app/.netlify/functions/GetImage/?imageId=${imageId}`, {
+                method: 'GET',
+            });
+
+            if(response.status === 200){
+                const blob = await response.blob();
+                imageSRC.value = URL.createObjectURL(blob);
+            }
+            else{
+                const message = await response.text();
+                console.log(message);
+                imageSRC.value = icons['emptyAvatar'];
+            }
+        }
+        catch(error){
+            const message = error.message;
+            console.log(message);
+        }
+        finally{
+            loading.value = false;
+        }
+    }
 
     const getOriginalPosterInfo = async () => {
         try{
@@ -17,8 +43,7 @@
 
             if(response.status === 200){
                 const result = await response.json();
-                console.log(result);
-                imageId.value = result.image;
+                getOriginalPosterImage(result.image)
                 name.value = result.name;                
             }
             else{
@@ -33,16 +58,6 @@
         }
     }
 
-    watch(imageId, (imageId) => {
-        if(!imageId)
-            loading.value = true;
-        else
-            loading.value = false;
-    }, {
-        flush: 'post',
-        immediate: true,
-    });
-
     onMounted(() => {
         getOriginalPosterInfo();
     })
@@ -53,7 +68,7 @@
         <img 
             v-if="loading === false"
             class="original_poster_image" 
-            :src="`https://feedback-server.netlify.app/.netlify/functions/GetImage/?imageId=${imageId}`"
+            :src="imageSRC"
             />
         <img 
             v-else
